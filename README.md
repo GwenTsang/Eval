@@ -51,14 +51,14 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 ### Essai de réplicabilité des résultats
 
-Etienne et al. ((2024)[https://arxiv.org/abs/2405.14385]) rapportent les performances suivantes :
+Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes :
 
 | Description | Rappel (Macro R) | Précision (Macro P) | Score Macro F1 |
 | :--- | :---: | :---: | :---: |
 | Présence d'une émotion | 0.76 | 0.74 | 0.75 |
 | Mode d'expression | 0.63 | 0.67 | 0.64 |
 | Type d'émotion (basique ou complexe) | 0.56 | 0.66 | 0.60 |
-| Catégorie émotionnelle | 0.40 | 0.46 | 0.42** |
+| Catégorie émotionnelle | 0.40 | 0.46 | 0.42 |
 
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
