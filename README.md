@@ -51,7 +51,7 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 ### Essai de réplicabilité des résultats
 
-Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) :
+Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA :
 
 |  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
 | :--- | :---: | :---: | :---: |
@@ -60,7 +60,11 @@ Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les perform
 | Type | 0.56 | 0.66 | 0.60 |
 | Catégorie émotionnelle | 0.40 | 0.46 | 0.42 |
 
+Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) dans un notebook Colab T4 accessible avec l'icone :
 
+[![dans Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing)
+
+Mais les performances obtenues semblent supérieures à celles qui sont documentées dans l'article :
 
 |  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
 | :--- | :---: | :---: | :---: |
@@ -68,6 +72,8 @@ Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les perform
 | Mode d'expression | 0.81 | 0.82 | 0.81 |
 | Type | 0.76 | 0.83 | 0.79 |
 | Catégorie émotionnelle | 0.55 | 0.60 | 0.57 |
+
+Une hypothèse pour expliquer ces écarts serait que les résultats donnés dans l'article découlent d'une moyenne des performances des différents "checkpoints" du modèle EMOTYC (une moyenne de ses performances à travers les epochs), et qu'on accède, via le dépôt HuggingFace, aux meilleurs checkpoints (aux meilleurs poids).
 
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
