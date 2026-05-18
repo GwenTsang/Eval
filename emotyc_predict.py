@@ -10,13 +10,11 @@ import json
 import math
 import os
 import sys
-
 import numpy as np
 import pandas as pd
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-
-from emotyc_config import (EMOTYC_LABEL2ID, ALL_LABELS)
+from emotyc_config import ALL_LABELS
 
 def load_model():
     """Charge le modèle EMOTYC et le tokenizer."""
@@ -28,9 +26,7 @@ def load_model():
         .to(device)
         .eval()
     )
-    print(f"Modèle EMOTYC chargé")
     return tokenizer, model, device
-
 
 def format_input(tokenizer, sentence, prev_sentence=None, next_sentence=None,
                  use_context=False):
@@ -73,7 +69,6 @@ def load_gold(xlsx_path):
 
     return df["TEXT"].astype(str).tolist(), gold
 
-
 def compute_metrics(gold, pred):
     """Calcule les métriques par label et globales sur les 19 labels."""
     from sklearn.metrics import (
@@ -81,68 +76,49 @@ def compute_metrics(gold, pred):
         cohen_kappa_score,
     )
 
+    def safe_kappa(g, p):
+        if len(np.unique(g)) == 1 and len(np.unique(p)) == 1:
+            return float("nan")
+
+        kappa = cohen_kappa_score(g, p, labels=[0, 1])
+        return kappa
+
     per_label = []
     for j, label in enumerate(ALL_LABELS):
         g, p = gold[:, j], pred[:, j]
+
         tp = int(((g == 1) & (p == 1)).sum())
         fp = int(((g == 0) & (p == 1)).sum())
         fn = int(((g == 1) & (p == 0)).sum())
         tn = int(((g == 0) & (p == 0)).sum())
+
         acc = accuracy_score(g, p)
-        try:
-            kappa = cohen_kappa_score(g, p, labels=[0, 1])
-        except Exception:
-            kappa = float("nan")
+        kappa = safe_kappa(g, p)
+
         per_label.append({
             "label": label,
             "tp": tp, "fp": fp, "fn": fn, "tn": tn,
-            "accuracy": round(acc, 4),
-            "kappa": round(kappa, 4) if not math.isnan(kappa) else None,
-            "f1": round(f1_score(g, p, zero_division=0), 4),
-            "precision": round(precision_score(g, p, zero_division=0), 4),
-            "recall": round(recall_score(g, p, zero_division=0), 4),
-            "prevalence_gold": round(g.sum() / len(g), 4),
-            "prevalence_pred": round(p.sum() / len(p), 4),
+            "accuracy": round(acc, 3),
+            "kappa": round(kappa, 3) if not math.isnan(kappa) else None,
+            "f1": round(f1_score(g, p, zero_division=0), 3),
+            "precision": round(precision_score(g, p, zero_division=0), 3),
+            "recall": round(recall_score(g, p, zero_division=0), 3),
+            "prevalence_gold": round(g.sum() / len(g), 3),
+            "prevalence_pred": round(p.sum() / len(p), 3),
         })
-
-    macro_f1 = np.mean([r["f1"] for r in per_label])
-    micro_f1 = f1_score(gold.ravel(), pred.ravel(), zero_division=0)
-
     global_metrics = {
-        "macro_f1": round(float(macro_f1), 4),
-        "micro_f1": round(float(micro_f1), 4),
-        "exact_match": round(float(np.all(gold == pred, axis=1).mean()), 4),
-        "n_samples": len(gold),
-        "n_labels": 19,
+        "micro_f1": round(f1_score(gold.ravel(), pred.ravel(), zero_division=0), 3),
+        "macro_f1": round(f1_score(gold, pred, average="macro", zero_division=0), 3),
     }
+
     return per_label, global_metrics
-
-
-def print_metrics(per_label, global_metrics):
-    """Affiche un tableau de métriques."""
-    print(f"\n{'—' * 75}")
-    print(f"  MÉTRIQUES — 19 LABELS EMOTYC  (seuil: {0.06})")
-    print(f"{'—' * 75}")
-    print(f"  {'Label':<20s} {'Acc':>7s} {'Kappa':>7s} {'F1':>7s} "
-          f"{'Prec':>7s} {'Recall':>7s} {'FP':>5s} {'FN':>5s}")
-    print(f"  {'-' * 68}")
-    for r in per_label:
-        k = f"{r['kappa']:.3f}" if r['kappa'] is not None else "  N/A"
-        print(f"  {r['label']:<20s} {r['accuracy']:>7.3f} {k:>7s} "
-              f"{r['f1']:>7.3f} {r['precision']:>7.3f} {r['recall']:>7.3f} "
-              f"{r['fp']:>5d} {r['fn']:>5d}")
-    print(f"  {'-' * 68}")
-    print(f"  Macro-F1    : {global_metrics['macro_f1']:.4f}")
-    print(f"  Micro-F1    : {global_metrics['micro_f1']:.4f}")
-    print(f"  Exact Match : {global_metrics['exact_match']:.4f}")
-    print(f"{'—' * 75}")
 
 def main():
     p = argparse.ArgumentParser(description="Inférence EMOTYC — 19 labels, métriques globales")
     p.add_argument("--xlsx", required=True, help="Fichier gold label (.xlsx)")
     p.add_argument("--out_dir", required=True, help="Dossier de sortie")
     p.add_argument("--use-context", action="store_true", help="Utiliser les phrases voisines comme contexte")
-    p.add_argument("--batch-size", type=int, default=32, help="Taille du batch (défaut: 32)")
+    p.add_argument("--batch-size", type=int, default=128, help="Taille du batch")
     args = p.parse_args()
 
     # 1. Gold
@@ -171,7 +147,6 @@ def main():
 
     # 5. Métriques
     per_label, global_metrics = compute_metrics(gold, pred)
-    print_metrics(per_label, global_metrics)
 
     # 6. Export résumé JSON uniquement
     os.makedirs(args.out_dir, exist_ok=True)
@@ -187,7 +162,6 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
     print(f"\nRésumé exporté : {out}")
-
 
 if __name__ == "__main__":
     main()

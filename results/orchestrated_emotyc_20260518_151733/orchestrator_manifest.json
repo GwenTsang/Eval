@@ -1,0 +1,98 @@
+{
+  "files": [
+    "/content/Eval/golds/homophobie_annotations_gold_flat_updated.xlsx",
+    "/content/Eval/golds/obésité_annotations_gold_flat_updated.xlsx",
+    "/content/Eval/golds/religion_annotations_gold_flat_updated.xlsx",
+    "/content/Eval/golds/racisme_annotations_gold_flat_updated.xlsx"
+  ],
+  "runs": [
+    {
+      "order": 1,
+      "input_file": "/content/Eval/golds/homophobie_annotations_gold_flat_updated.xlsx",
+      "output_dir": "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/01_homophobie_annotations_gold_flat_updated",
+      "command": [
+        "/usr/bin/python3",
+        "/content/Eval/emotyc_predict_details.py",
+        "--xlsx",
+        "/content/Eval/golds/homophobie_annotations_gold_flat_updated.xlsx",
+        "--out_dir",
+        "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/01_homophobie_annotations_gold_flat_updated",
+        "--batch-size",
+        "32",
+        "--template",
+        "bca_spaced",
+        "--mode-threshold",
+        "0.06",
+        "--use-context"
+      ],
+      "returncode": 0,
+      "status": "ok"
+    },
+    {
+      "order": 2,
+      "input_file": "/content/Eval/golds/obésité_annotations_gold_flat_updated.xlsx",
+      "output_dir": "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/02_obésité_annotations_gold_flat_updated",
+      "command": [
+        "/usr/bin/python3",
+        "/content/Eval/emotyc_predict_details.py",
+        "--xlsx",
+        "/content/Eval/golds/obésité_annotations_gold_flat_updated.xlsx",
+        "--out_dir",
+        "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/02_obésité_annotations_gold_flat_updated",
+        "--batch-size",
+        "32",
+        "--template",
+        "bca_spaced",
+        "--mode-threshold",
+        "0.06",
+        "--use-context"
+      ],
+      "returncode": 0,
+      "status": "ok"
+    },
+    {
+      "order": 3,
+      "input_file": "/content/Eval/golds/religion_annotations_gold_flat_updated.xlsx",
+      "output_dir": "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/03_religion_annotations_gold_flat_updated",
+      "command": [
+        "/usr/bin/python3",
+        "/content/Eval/emotyc_predict_details.py",
+        "--xlsx",
+        "/content/Eval/golds/religion_annotations_gold_flat_updated.xlsx",
+        "--out_dir",
+        "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/03_religion_annotations_gold_flat_updated",
+        "--batch-size",
+        "32",
+        "--template",
+        "bca_spaced",
+        "--mode-threshold",
+        "0.06",
+        "--use-context"
+      ],
+      "returncode": 0,
+      "status": "ok"
+    },
+    {
+      "order": 4,
+      "input_file": "/content/Eval/golds/racisme_annotations_gold_flat_updated.xlsx",
+      "output_dir": "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/04_racisme_annotations_gold_flat_updated",
+      "command": [
+        "/usr/bin/python3",
+        "/content/Eval/emotyc_predict_details.py",
+        "--xlsx",
+        "/content/Eval/golds/racisme_annotations_gold_flat_updated.xlsx",
+        "--out_dir",
+        "/content/Eval/results/orchestrated_emotyc_20260518_151733/runs/04_racisme_annotations_gold_flat_updated",
+        "--batch-size",
+        "32",
+        "--template",
+        "bca_spaced",
+        "--mode-threshold",
+        "0.06",
+        "--use-context"
+      ],
+      "returncode": 0,
+      "status": "ok"
+    }
+  ]
+}
