@@ -47,20 +47,6 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 
 
-
-
-### Génération d'un rapport HTML
-
-Convertit le fichier standardisé `emotyc_predictions_summary.json` (généré par les scripts d'inférence) en un rapport HTML lisible, avec possibilité de regrouper les métriques par dimension sémantique.
-
-**Exemple d'utilisation :**
-```bash
-python json_summary_to_html.py \
-    --json ./results/mon_run/emotyc_predictions_summary.json \
-    --out ./results/mon_run/rapport.html \
-    --groups
-```
-
 ## Résultats
 
 ### Essai de réplicabilité des résultats
@@ -225,6 +211,22 @@ add_special_tokens=False
 Nos tests montrent que les performances d'EMOTYC diminuent quand `add_special_tokens=True`, ce qui suggère que l'ajout de tokens spéciaux était bien désactivé pendant le fine-tuning. Avec `add_special_tokens=False`, le premier token de la séquence n’est pas le token spécial `<s>`, mais le premier token produit par la tokenisation du template BCA, qui correspond au fragment lexical `_be` (car `CamembertTokenizer` ajoute le préfixe `_` lorsqu’un mot est précédé d’un espace). L’état caché associé à ce token en position 0 à la 12e couche du modèle sert de représentation globale utilisée pour la classification.
 
 D'autres tests montrent également que la configuration avec template BCA et `add_special_tokens=True` reste assez performante, bien qu’inférieure à la configuration sans tokens spéciaux. Cela suggère que, dans les deux cas, l'architecture Transformer parvient à diriger l'information pertinente vers la position 0 (qu'il s'agisse du token `_be` lorsque `add_special_tokens=False`, ou du token spécial `<s>` lorsque `add_special_tokens=True`).
+
+
+
+
+
+### Génération d'un rapport HTML
+
+Convertit le fichier standardisé `emotyc_predictions_summary.json` (généré par les scripts d'inférence) en un rapport HTML lisible, avec possibilité de regrouper les métriques par dimension sémantique.
+
+**Exemple d'utilisation :**
+```bash
+python json_summary_to_html.py \
+    --json ./results/mon_run/emotyc_predictions_summary.json \
+    --out ./results/mon_run/rapport.html \
+    --groups
+```
 
 ### Contiguité et non contiguité
 
