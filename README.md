@@ -51,14 +51,23 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 ### Essai de réplicabilité des résultats
 
-Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes :
+Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) :
 
-| Description | Rappel (Macro R) | Précision (Macro P) | Score Macro F1 |
+|  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
 | :--- | :---: | :---: | :---: |
 | Présence d'une émotion | 0.76 | 0.74 | 0.75 |
 | Mode d'expression | 0.63 | 0.67 | 0.64 |
-| Type d'émotion (basique ou complexe) | 0.56 | 0.66 | 0.60 |
+| Type | 0.56 | 0.66 | 0.60 |
 | Catégorie émotionnelle | 0.40 | 0.46 | 0.42 |
+
+
+
+|  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
+| :--- | :---: | :---: | :---: |
+| Présence d'une émotion | 0.93 | 0.92 | 0.92 |
+| Mode d'expression | 0.81 | 0.82 | 0.81 |
+| Type | 0.76 | 0.83 | 0.79 |
+| Catégorie émotionnelle | 0.55 | 0.60 | 0.57 |
 
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
