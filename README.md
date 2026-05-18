@@ -1,27 +1,6 @@
 # Évaluation du modèle EMOTYC
 
 Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans. EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
- 
-
-## Installation
-
-```bash
-# Créer un environnement virtuel (recommandé)
-python -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements.txt
-```
-
-**Exemple d'utilisation :**
-
-```bash
-python emotyc_predict.py \
-    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
-    --out_dir ./results/CyberAggAdo/ContextTemplate \
-    --use-context
-```
-L'option `--use-context` ajoute les phrases adjacentes (i-1 et i+1) lors de l'inférence en formatant l'entrée selon le template BCA (Before, Current, After).
 
 ## Cadre théorique et schéma d'annotation utilisé
 
