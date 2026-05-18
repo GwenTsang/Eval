@@ -1,8 +1,6 @@
 # Évaluation du modèle EMOTYC
 
-Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans.
-
-Le modèle EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
+Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans. EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
  
 
 ## Installation
@@ -51,7 +49,7 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 
 
-### Génération d'un rapport HTML (`json_summary_to_html.py`)
+### Génération d'un rapport HTML
 
 Convertit le fichier standardisé `emotyc_predictions_summary.json` (généré par les scripts d'inférence) en un rapport HTML lisible, avec possibilité de regrouper les métriques par dimension sémantique.
 
@@ -64,6 +62,17 @@ python json_summary_to_html.py \
 ```
 
 ## Résultats
+
+### Essai de réplicabilité des résultats
+
+Voici le tableau récapitulatif des performances globales du modèle pour les quatre tâches :
+
+| Description | Rappel (Macro R) | Précision (Macro P) | Score Macro F1 |
+| :--- | :---: | :---: | :---: |
+| Présence d'une émotion | 0.76 | 0.74 | 0.75 |
+| Mode d'expression | 0.63 | 0.67 | 0.64 |
+| Type d'émotion (basique ou complexe) | 0.56 | 0.66 | 0.60 |
+| Catégorie émotionnelle | 0.40 | 0.46 | 0.42** |
 
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
