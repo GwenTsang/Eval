@@ -60,11 +60,7 @@ Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les perform
 | Type | 0.56 | 0.66 | 0.60 |
 | Catégorie émotionnelle | 0.40 | 0.46 | 0.42 |
 
-Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) dans un notebook Colab T4 accessible avec l'icone :
-
-[![dans Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing)
-
-Mais les performances obtenues semblent supérieures à celles qui sont documentées dans l'article :
+Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) à travers le script `emotyc_predict_parquet.py`, qui a été exécuté dans un [notebook Colab T4](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing). Mais les performances obtenues sont supérieures à celles qui sont documentées dans l'article :
 
 |  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
 | :--- | :---: | :---: | :---: |
