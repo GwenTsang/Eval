@@ -51,7 +51,7 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 ### Essai de réplicabilité des résultats
 
-Voici le tableau récapitulatif des performances globales du modèle pour les quatre tâches :
+Etienne et al. ((2024)[https://arxiv.org/abs/2405.14385]) rapportent les performances suivantes :
 
 | Description | Rappel (Macro R) | Précision (Macro P) | Score Macro F1 |
 | :--- | :---: | :---: | :---: |
