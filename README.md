@@ -4,9 +4,9 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 ## 1. Cadre théorique et schéma d'annotation utilisé
 
+### 1.1 L'Unité d'annotation
 
 Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*. L'unité d'annotation est la `SitEmo` (pour "Situation Émotionnelle"). Chaque SitEmo est un triplet :
-
 
 SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
 - **Span** : un intervalle `[i, j]` qui délimite le segment textuel porteur de l'émotion au sein d'une phrase. Ce segment peut aller d'un seul signe de ponctuation (`!`) à une proposition entière.
@@ -14,6 +14,8 @@ SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
 - **Mode d'expression** : la *manière* dont l'émotion est linguistiquement réalisée (parmi 4 modes, voir §1.3).
 
 Une phrase peut contenir zéro, une ou plusieurs unités SitEmo, et les segments de deux SitEmo distinctes peuvent se chevaucher.
+
+### 1.2 Les catégories émotionnelles
 
 Le schéma distingue 12 catégories émotionnelles, chacune regroupant des émotions fines :
 
