@@ -103,44 +103,6 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
-Les commandes utilisées pour produire les résultats dans les sections 2.1.1 et 2.1.2 sont respectivement :
-
-```python
-python orchestrate_emotyc_folder.py
-```
-et
-```python
-python orchestration_cyberaggado.py \
-    --out_dir ./results/CyberAggAdo/ContextTemplateMode05 \
-```
-
-Les commandes utilisées pour produire les résultats dans les sections 2.2.1, 2.2.2, 2.2.3 et 2.2.4 sont respectivement :
-
-```python
-python emotyc_predict.py \
-    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
-    --out_dir ./results/CyberAggAdo/ContextTemplateMode006 \
-    --use-context
-```
-
-```python
-python emotyc_predict.py \
-    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
-    --out_dir ./results/TTK/ContextTemplateMode006 \
-    --use-context
-```
-
-```python
-python emotyc_predict.py \
-    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
-    --out_dir ./results/CyberAggAdo/NoContextTemplateMode006
-```
-
-```python
-python emotyc_predict.py \
-    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
-    --out_dir ./results/TTK/NoContextTemplateMode006
-```
 
 ### Métriques utilisées
 
@@ -276,3 +238,51 @@ python orchestrate_emotyc_folder.py \
 Nous utilisons `torch.inference_mode()`, ce qui évite de construire le graphe de gradients. Dans le cas contraire, sans `torch.inference_mode()`, PyTorch peut conserver des informations pour calculer les gradients plus tard : activations, relations entre opérations, métadonnées de vues, compteurs de version, etc. Ce paramètre permet en partie d'économiser de la mémoire et du temps côté autograd. L'implémentation officielle est [disponible ici](https://github.com/pytorch/pytorch/blob/main/torch/autograd/grad_mode.py).
 
 Le modèle a été testé sur CPU et sur différents GPU. Sur Colab, avec une Tesla T4, nous conseillons d'utiliser `--batch-size 900`.
+
+## Reproductibilité et commandes utilisées
+
+Pour 2.1.1  :
+
+```python
+python orchestrate_emotyc_folder.py
+```
+
+Pour 2.1.2 :
+
+```python
+python orchestration_cyberaggado.py \
+    --out_dir ./results/CyberAggAdo/ContextTemplateMode05 \
+```
+
+Pour 2.2.1 :
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
+    --out_dir ./results/CyberAggAdo/ContextTemplateMode006 \
+    --use-context
+```
+Pour 2.2.2 :
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
+    --out_dir ./results/TTK/ContextTemplateMode006 \
+    --use-context
+```
+
+Pour 2.2.3 :
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
+    --out_dir ./results/CyberAggAdo/NoContextTemplateMode006
+```
+
+Pour 2.2.4 :
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
+    --out_dir ./results/TTK/NoContextTemplateMode006
+```
