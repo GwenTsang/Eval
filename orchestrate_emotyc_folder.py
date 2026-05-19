@@ -29,7 +29,7 @@ DEFAULT_XLSX_FILES = [
 
 OUT_DIR = ROOT / "results" / "orchestrated_emotyc"
 BATCH_SIZE = 128
-THRESHOLD = 0.06
+THRESHOLD = 0.5
 USE_CONTEXT = True
 
 
