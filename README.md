@@ -39,7 +39,7 @@ Le dossier [`results`](results) contient l'ensemble des inférences déjà gén�
 
 ## 2. Performances du modèle EMOTYC
 
-### 2.1. Répliquer les résultats officiels sur le corpus Test
+### 2.1.1. Répliquer les résultats officiels sur le corpus Test
 
 Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA et des seuils à 0.5 pour tous les labels :
 
@@ -66,7 +66,7 @@ Performances détaillées label par label :
 ![TablePerformances1](illustrations/TTk_05_context.svg)
 
 
-### 2.2. Performance sur CyberAggAdo avec les mêmes paramètres
+### 2.1.2. Performance sur CyberAggAdo avec les mêmes paramètres
 
 Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet de faire une comparaison honnête en utilisant exactement la même configuration que celle ayant donné les résultats exposé dans la section 2.1. ci-dessus. On obtient donc :
 
@@ -81,30 +81,40 @@ Performances détaillées par label :
 
 ![TablePerformances1](illustrations/CyberAggAdo_seuil05_context.svg)
 
-### 2.3. Comparaison des performances en modifiant un seuil
+### 2.2. Comparaison des performances en modifiant un seuil
 
 Les résultats sont un petit peu plus favorable pour CyberAggAdo si on utilise un seuil à 0.06 pour les modes, et cela ne dégrade pas la performance sur TTK.
 
-#### 2.3.1. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+#### 2.2.1. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
 
 Les résultats obtenus sur CyberAggAdo sont alors :
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
 
 
-#### 2.3.2. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur TTK
+#### 2.2.2. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur TTK
 
 ![TablePerformancesTTK1](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
-#### 2.3.3. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+#### 2.2.3. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
 
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
 
-#### 2.3.4. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
+#### 2.2.4. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
+Les commandes utilisées pour produire les résultats dans les sections 2.1.1 et 2.1.2 sont respectivement :
 
-Les commandes utilisées pour produire les résultats dans les sections 2.3.1, 2.3.2, 2.3.3 et 2.3.4 sont respectivement :
+```python
+python orchestrate_emotyc_folder.py
+```
+et
+```python
+python orchestration_cyberaggado.py \
+    --out_dir ./results/CyberAggAdo/ContextTemplateMode05 \
+```
+
+Les commandes utilisées pour produire les résultats dans les sections 2.2.1, 2.2.2, 2.2.3 et 2.2.4 sont respectivement :
 
 ```python
 python emotyc_predict.py \
