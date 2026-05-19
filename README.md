@@ -73,6 +73,7 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 | Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
 
 ### 2.3. Comparaison des performances en modifiant un seuil
+
 Les résultats sont un petit peu plus favorable pour CyberAggAdo si on utilise un seuil à 0.06 pour les modes, et cela ne dégrade pas la performance sur TTK.
 
 #### 2.3.1. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
@@ -83,7 +84,7 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 #### 2.3.2. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur TTK
 
-![TablePerformances2](illustrations/table_metriques_TTK_Context_Mode_006.svg)
+![TablePerformancesTTK1](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
 #### 2.3.3. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
 
@@ -91,7 +92,7 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 #### 2.3.4. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
 
-![TablePerformances2](illustrations/table_metriques_TTK_NoContextModes_006.svg)
+![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
 
 Les commandes utilisées pour produire les résultats dans les sections 2.3.1, 2.3.2, 2.3.3 et 2.3.4 sont respectivement :
