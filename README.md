@@ -35,9 +35,6 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
   - [4.10. Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado--avec-contexte)
   - [4.11. Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado--sans-contexte)
 
-- [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
-
-
 
 - [Remarques relatives à l’optimisation des scripts d’inférence](#8-remarques-relatives-à-loptimisation-des-scripts-dinférence)
 
