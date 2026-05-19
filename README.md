@@ -119,7 +119,18 @@ Ainsi, d'un côté, par un échantillonage non-contigu, nous avons obtenu [rando
 C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
 
 
+## 3. Données évaluées
 
+Nous testons les performances d'EMOTYC sur deux corpus. D'une part, [`emotexttokids_gold_flat.xlsx`](golds/emotexttokids_gold_flat.xlsx), qui est le corpus d'entraînement d'EMOTYC, contenant des articles de presse jeunesse et de la littérature pour enfants. Le sous-ensemble TEST est disponible sur [HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences).
+
+- Fichier gold : 
+
+### 3.2 Corpus CyberAggAdo
+
+Corpus hors-domaine de messages de cyberharcèlement (Ollagnier et al., 2024). Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio.
+
+- Fichier gold : [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx)
+- Scripts d'annotation : [github.com/42009221/AnnotationsCyberAggAdo](https://github.com/42009221/AnnotationsCyberAggAdo)
 
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
