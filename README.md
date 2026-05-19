@@ -36,7 +36,7 @@ Le schéma distingue 12 catégories émotionnelles, chacune regroupant des émot
 
 ## 1.3 Les modes d'expression
 
-Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il exprime. Il repose sur la typologie de Micheli (2014), adaptée par Etienne (2023) :
+Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il exprime. Il repose sur la typologie de Micheli (2014), adaptée par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) :
 
 | Mode | Définition | Exemples |
 |:---|:---|:---|
@@ -44,6 +44,8 @@ Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il expr
 |  **Comportemental** | L'émotion est inférée à partir de la description d'une manifestation physique ou comportementale. | « Elle *éclata en sanglots*. » → Tristesse |
 | **Suggéré** | L'émotion est inférée par le lecteur à partir d'une situation décrite, conventionnellement associée à un ressenti. | « Paul *a gagné la course*. » → Joie/Fierté |
 | **Montré** | L'émotion transparaît à travers les caractéristiques formelles de l'énoncé (interjections, ponctuation expressive, syntaxe fragmentée, etc.). | « *DEHORSSSSS* » → Colère |
+
+Une unité SitEmo ne peut recevoir qu'un seul mode.
 
 Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/abs/1911.03894) auquel on a ajouté une tête de classification multi-label. Cette tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type** :
 
