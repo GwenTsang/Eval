@@ -53,7 +53,7 @@ def predict_batch(tokenizer, model, device, texts, batch_size=32):
         all_probs.append(probs)
     return np.vstack(all_probs)
 
-def load_(xlsx_path):
+def load_gold(xlsx_path):
     """Charge le gold. Exige TEXT + les 19 colonnes EMOTYC."""
     df = pd.read_excel(xlsx_path)
     if "TEXT" not in df.columns:
