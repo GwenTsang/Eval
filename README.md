@@ -33,9 +33,9 @@ Ici, les corpus testés sont :
 
 Et une version échantillonnée aléatoirement de CyberAggAdo :
 
-- [RandomSample120](`golds/random_sample_120.xlsx`) : 120 lignes
+- [RandomSample120](`golds/random_sample_120.xlsx`)
 
-Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
+Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
 ## 2. Résultats
 
@@ -72,7 +72,16 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 | Type | 0.49 | 0.42 | 0.42 |
 | Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
 
+### 2.3. Comparaison des performances en modifiant un seuil
 
+
+
+![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
+
+
+#### Sur TextToKids
+
+![TablePerformances2](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
 
 
@@ -93,7 +102,6 @@ Les variantes se déclinent selon ces paramètres :
 - **Avec ou sans contexte** : `--use-context` (ajoute les phrases i-1 et i+1) ou sans cette option (par défaut).
 - **Seuil des modes d'expression** : `--mode-threshold 0.06` (seuil très bas pour optimiser le rappel) ou `--mode-threshold 0.5` (seuil classique).
 
-*(Vous trouverez dans chaque sous-dossier le fichier Excel complet, le JSONL détaillé avec les probabilités et les divergences, et le résumé JSON global).*
 
 ### Métriques utilisées
 
@@ -131,14 +139,6 @@ L’interprétation des baisses de performance :
 
 ### Performances avec contexte + seuil 0.06
 
-#### Sur CyberAggAdo
-
-![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
-
-
-#### Sur TextToKids
-
-![TablePerformances2](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
 
 ### Performances avec juste la phrase cible + seuil 0.06
