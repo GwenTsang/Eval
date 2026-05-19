@@ -4,7 +4,7 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 ## 1. Cadre théorique et schéma d'annotation utilisé
 
-Le modèle EMOTYC est basé sur CamemBERT et effectue une classification multi-label. Sa tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type**.
+Le modèle EMOTYC est basé sur CamemBERT et effectue une classification multi-label. Sa tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type** :
 
 <br>
 <p align="center">
@@ -31,9 +31,9 @@ Ici, les corpus testés sont :
 - [TextToKids](`golds/emotexttokids_gold_flat.xlsx`) noté TTK ci-après.
 - [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
-Et une version échantillonnée aléatoirement de CyberAggAdo :
+Et deux versions échantillonnées aléatoirement de CyberAggAdo, la première est [RandomSample120](`golds/random_sample_120.xlsx`)
 
-- [RandomSample120](`golds/random_sample_120.xlsx`)
+
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
