@@ -103,6 +103,14 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
+#### 2.2.5. Performance d'EMOTYC sur 4 échantillons de 50 unités textuelles contigues extraites aléatoirement (avec contexte et seuil 05)
+
+![TablePerformancesTTK2](illustrations/table_SampleCyberAgg_ContextTemplateAvecEspaceMode05.svg)
+
+#### 2.2.6. Performances d'EMOTYC sur un échantillon de 120 unités (non contigues) extraites aléatoirement
+
+![TablePerformancesTTK2](illustrations/sample120_CyberAgg_NoContext.svg)
+
 
 ### Métriques utilisées
 
@@ -286,3 +294,16 @@ python emotyc_predict.py \
     --xlsx ./golds/emotexttokids_gold_flat.xlsx \
     --out_dir ./results/TTK/NoContextTemplateMode006
 ```
+
+Pour 2.2.5 :
+
+```python
+!python3 orchestrate_emotyc_folder.py ./golds/xlsx_samples
+```
+
+puis
+
+```python
+!python ./illustrations/json_to_svg.py --json ./results/orchestrated_emotyc_xlsx_samples/emotyc_predictions_summary.json
+```
+
