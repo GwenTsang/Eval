@@ -111,6 +111,17 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 ![TablePerformancesTTK2](illustrations/sample120_CyberAgg_NoContext.svg)
 
+#### 2.2.7. Performances relatives (écarts) 
+
+
+
+##### 2.2.7.1. Performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
+
+![Table Delta Context](illustrations/table_delta_context.svg)
+
+##### 2.2.7.2. Performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
+
+![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
 ### Métriques utilisées
 
@@ -132,7 +143,7 @@ Il porte donc sur l’ensemble des instances dont le label vrai est positif. Une
 
 
 
-## Performances relatives : écarts par rapport à TextToKids
+## 
 
 Ci-dessous, deux tableaux issus de [`delta_heatmap.py`](delta_heatmap.py). Les résultats correspondent aux écarts signés par label (Δ = TTK − Cyber). Un Δ positif indique une performance supérieure sur TextToKids ; un Δ négatif indique une performance supérieure sur CyberAggAdo.
 
@@ -144,9 +155,8 @@ $$
 Un Δ positif indique une baisse de performance lors du transfert de TextToKids (TTK) vers CyberAggAdo.
 
 
-### Tableau des performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
+### Tableau des 
 
-![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
 
 Ce tableau a été obtenu avec
@@ -161,7 +171,6 @@ python delta_heatmap.py \
 ### Tableau des performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
 
 
-![Table Delta Context](illustrations/table_delta_context.svg)
 
 Ce tableau a été obtenu avec
 
