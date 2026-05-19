@@ -25,8 +25,8 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
   - [4.5 TTK — contexte + seuil modes 0.06](#45-ttk-contexte-+-seuil-modes-006)
   - [4.6 CyberAggAdo — sans contexte + seuil modes 0.06](#46-cyberaggado-sans-contexte-+-seuil-modes-006)
   - [4.7 TTK — sans contexte + seuil modes 0.06](#47-ttk-sans-contexte-+-seuil-modes-006)
-  - [4.8 Échantillons contigus](#48-échantillons-contigus)
-  - [4.9 Échantillon aléatoire](#49-échantillon-aléatoire)
+  - [4.8 Échantillon aléatoire contigus](#48-échantillon-aléatoire-contigu)
+  - [4.9 Échantillon aléatoire non contigus](#49-échantillon-aléatoire-non-contigus)
   - [4.10 Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado-avec-contexte)
   - [4.11 Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado-sans-contexte)
 - [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
@@ -264,13 +264,13 @@ Performances détaillées par label :
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
-### 4.8 Échantillons contigus
+### 4.8 Échantillon aléatoire contigu
 
 **Configuration** : 4 échantillons de 50 unités textuelles contiguës extraites aléatoirement. Template BCA + contexte + seuil 0.5.
 
 ![TablePerformancesTTK2](illustrations/table_SampleCyberAgg_ContextTemplateAvecEspaceMode05.svg)
 
-### 4.9 Échantillon aléatoire
+### 4.9 Échantillon aléatoire non contigus
 
 **Configuration** : 120 unités non contiguës extraites aléatoirement. Sans contexte.
 
