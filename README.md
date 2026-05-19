@@ -87,11 +87,13 @@ Etienne et al. (2024, p. 5) rapportent une stratégorie de fine-tuning en deux t
 
 ### 2.2 Format d'entrée
 
-Le modèle utilise un template **BCA** (_Before, Current, After_) :
+Le modèle a été entraîné avec le template :
 
 ```txt
 before:{previous_sentence}current:{target_sentence}after:{next_sentence}
 ```
+
+ce template est désigné "template BCA" (pour _Before, Current, After_).
 Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche qui est transmis à la tête de classification.
 
 
