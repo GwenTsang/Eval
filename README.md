@@ -83,6 +83,12 @@ $$\hat{\mathbf{y}} = [\hat{y}_1, \ldots, \hat{y}_{19}] $$
 
 où chaque $\hat{y}_i$ est dans l'intervalle {0, 1}.
 
+Concrètement, une phrase qui exprime la joie sur un mode comportemental (p. ex. la phrase "Il lui a adressé un sourire") sera représentée par ce vecteur :
+<br>
+<p align="center">
+  <img src="illustrations/emotyc_output_vector.svg" width="650">
+</p>
+
 Etienne et al. (2024, p. 5) rapportent une stratégorie de fine-tuning en deux temps. Dans une première phase, ils ont fait l'affinage sur la seule tâche de détection de présence/absence d'émotion (1 sortie binaire). Dans un second temps, ils ont fait un affinage multi-tâches sur les 19 labels simultanément, à partir des poids de la phase 1. L'optimiseur est Adam (lr = 10⁻⁵, pas de decay, batch size = 8) avec une pondération des classes plafonnée à 50 pour gérer le déséquilibre.
 
 ### 2.2 Format d'entrée
@@ -99,10 +105,7 @@ Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquenc
 
 
 
-<br>
-<p align="center">
-  <img src="illustrations/emotyc_output_vector.svg" width="700">
-</p>
+
 Les labels `Emo`, `Base` et `Complexe` sont logiquement impliqués par les autres labels. Par exemple, `Base = 1` si et seulement si au moins l'une des 6 émotions de base est à `1`.
 
 
