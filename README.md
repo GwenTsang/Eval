@@ -2,7 +2,7 @@
 
 Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans. EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
 
-## Cadre théorique et schéma d'annotation utilisé
+## 1. Cadre théorique et schéma d'annotation utilisé
 
 Le modèle EMOTYC est basé sur CamemBERT et effectue une classification multi-label. Sa tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type**.
 
@@ -28,11 +28,11 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 
 
-## Résultats
+## 2. Résultats
 
-### Essai de réplicabilité des résultats
+### 2.1. Répliquer les résultats officiels
 
-Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA :
+Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA et des seuils à 0.5 pour tous les labels :
 
 |  | Rappel (Macro) | Précision (Macro) | Macro F1 |
 | :--- | :---: | :---: | :---: |
@@ -41,7 +41,7 @@ Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les perform
 | Type | 0.56 | 0.66 | 0.60 |
 | Catégorie émotionnelle | 0.40 | 0.46 | 0.42 |
 
-Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) à travers le script `emotyc_predict_parquet.py`, qui a été exécuté dans un [notebook Colab T4](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing). Mais les performances obtenues sont supérieures à celles qui sont documentées dans l'article :
+Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) à travers le script [`emotyc_predict_parquet.py`](emotyc_predict_parquet.py), qui a été exécuté dans ce [notebook Colab T4](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing). Mais les performances obtenues sont supérieures à celles qui sont documentées dans l'article :
 
 |  | Rappel (Macro) | Précision (Macro) | Macro F1 |
 | :--- | :---: | :---: | :---: |
@@ -51,6 +51,17 @@ Nous avons essayé de reproduire à l'identique ces paramètres, en partant du s
 | Catégorie émotionnelle | 0.55 | 0.60 | 0.57 |
 
 Une hypothèse pour expliquer ces écarts serait que les résultats donnés dans l'article découlent d'une moyenne des performances des différents "checkpoints" du modèle EMOTYC (une moyenne de ses performances à travers les epochs), et qu'on accède, via le dépôt HuggingFace, aux meilleurs checkpoints (aux meilleurs poids).
+
+### 2.2. Performance sur CyberAggAdo avec les mêmes paramètres
+
+Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet de faire une comparaison honnête en utilisant exactement la même configuration que celle ayant donné les résultats exposé dans la section 2.1. ci-dessus. On obtient donc :
+
+|  | Rappel (Macro) | Précision (Macro) | Macro F1 |
+| :--- | :---: | :---: | :---: |
+| Présence d'une émotion | 0.63 | 0.63 | 0.63 |
+| Mode d'expression | 0.25 | 0.34 | 0.28 |
+| Type | 0.49 | 0.42 | 0.42 |
+| Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
 
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
