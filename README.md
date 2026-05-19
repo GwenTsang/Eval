@@ -6,48 +6,45 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 # Table des matières
 
-- [Introduction](#évaluation-du-modèle-emotyc)
-
-- [1. Cadre théorique et schéma d’annotation utilisé](#1-cadre-théorique-et-schéma-dannotation-utilisé)
-  - [1.1. L’unité d’annotation](#11-lunité-dannotation)
-  - [1.2. Les catégories émotionnelles](#12-les-catégories-émotionnelles)
-  - [1.3. Les modes d’expression](#13-les-modes-dexpression)
-  - [1.4. Les trois types](#14-les-trois-types)
-  - [1.5. Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique--le-vecteur-à-19-labels)
-
+- [1. Cadre théorique et schéma d'annotation utilisé](#1-cadre-théorique-et-schéma-dannotation-utilisé)
+  - [1.1 L'Unité d'annotation](#11-lunité-dannotation)
+  - [1.2 Les catégories émotionnelles](#12-les-catégories-émotionnelles)
+  - [1.3 Les modes d'expression](#13-les-modes-dexpression)
+  - [1.4 Les trois types](#14-les-trois-types)
+  - [1.5 Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique-le-vecteur-à-19-labels)
 - [2. Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
-  - [2.1. De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
-  - [2.2. Format d’entrée](#22-format-dentrée)
-
+  - [2.1 De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
+  - [2.2 Format d'entrée](#22-format-dentrée)
 - [3. Données évaluées](#3-données-évaluées)
-  - [3.1. Échantillons](#31-echantillons)
-
+  - [3.1. Echantillons](#31-echantillons)
 - [4. Performances du modèle EMOTYC](#4-performances-du-modèle-emotyc)
-  - [4.1. Métriques utilisées](#41-métriques-utilisées)
-  - [4.2. Répliquer les résultats officiels sur le corpus Test](#42-répliquer-les-résultats-officiels-sur-le-corpus-test)
-  - [4.3. Performance sur CyberAggAdo avec les mêmes paramètres](#43-performance-sur-cyberaggado-avec-les-mêmes-paramètres)
-  - [4.4. CyberAggAdo — contexte + seuil modes 0.06](#44-cyberaggado--contexte--seuil-modes-006)
-  - [4.5. TTK — contexte + seuil modes 0.06](#45-ttk--contexte--seuil-modes-006)
-  - [4.6. CyberAggAdo — sans contexte + seuil modes 0.06](#46-cyberaggado--sans-contexte--seuil-modes-006)
-  - [4.7. TTK — sans contexte + seuil modes 0.06](#47-ttk--sans-contexte--seuil-modes-006)
-  - [4.8. Échantillons contigus](#48-échantillons-contigus)
-  - [4.9. Échantillon aléatoire](#49-échantillon-aléatoire)
-  - [4.10. Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado--avec-contexte)
-  - [4.11. Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado--sans-contexte)
+  - [4.1 Métriques utilisées](#41-métriques-utilisées)
+  - [4.2 Répliquer les résultats officiels sur le corpus Test](#42-répliquer-les-résultats-officiels-sur-le-corpus-test)
+  - [4.3 Performance sur CyberAggAdo avec les mêmes paramètres](#43-performance-sur-cyberaggado-avec-les-mêmes-paramètres)
+  - [4.4 CyberAggAdo — contexte + seuil modes 0.06](#44-cyberaggado-contexte-+-seuil-modes-006)
+  - [4.5 TTK — contexte + seuil modes 0.06](#45-ttk-contexte-+-seuil-modes-006)
+  - [4.6 CyberAggAdo — sans contexte + seuil modes 0.06](#46-cyberaggado-sans-contexte-+-seuil-modes-006)
+  - [4.7 TTK — sans contexte + seuil modes 0.06](#47-ttk-sans-contexte-+-seuil-modes-006)
+  - [4.8 Échantillons contigus](#48-échantillons-contigus)
+  - [4.9 Échantillon aléatoire](#49-échantillon-aléatoire)
+  - [4.10 Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado-avec-contexte)
+  - [4.11 Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado-sans-contexte)
+- [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
+  - [5.1 Génération d'un rapport HTML](#51-génération-dun-rapport-html)
+  - [5.2 Contiguité et non-contiguité](#52-contiguité-et-non-contiguité)
+- [6. Remarques relatives à l'optimisation des scripts d'inférence](#6-remarques-relatives-à-loptimisation-des-scripts-dinférence)
+- [7. Reproductibilité et commandes utilisées](#7-reproductibilité-et-commandes-utilisées)
 
-
-- [Remarques relatives à l’optimisation des scripts d’inférence](#8-remarques-relatives-à-loptimisation-des-scripts-dinférence)
-
-- [Reproductibilité et commandes utilisées](#9-reproductibilité-et-commandes-utilisées)
-
-   
 # 1. Cadre théorique et schéma d'annotation utilisé
 
 ## 1.1 L'Unité d'annotation
 
-Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*. L'unité d'annotation est la `SitEmo` (pour "Situation Émotionnelle"). Chaque SitEmo est un triplet :
+Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*. L'unité d'annotation est la `SitEmo` (pour "Situation Émotionnelle"). Nous représentons chaque SitEmo comme un triplet :
 
-SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
+<p align="center">
+  <code>SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)</code>
+</p>
+
 - **Span** : un intervalle `[i, j]` qui délimite le segment textuel porteur de l'émotion au sein d'une phrase. Ce segment peut aller d'un seul signe de ponctuation (`!`) à une proposition entière.
 - **Catégorie émotionnelle** : l'émotion exprimée (parmi 12 catégories, voir §1.2).
 - **Mode d'expression** : la *manière* dont l'émotion est linguistiquement réalisée (parmi 4 modes, voir §1.3).
@@ -86,7 +83,7 @@ Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il expr
 
 Une unité SitEmo ne peut recevoir qu'un seul mode.
 
-## 1.3 Les trois types
+## 1.4 Les trois types
 
 Les 12 catégories émotinonnelles sont regroupées en trois types :
 
@@ -95,7 +92,7 @@ Les 12 catégories émotinonnelles sont regroupées en trois types :
   <img src="illustrations/types_emotions.svg" width="700">
 </p>
 
-## Transposition au niveau phrastique : le vecteur à 19 labels
+## 1.5 Transposition au niveau phrastique : le vecteur à 19 labels
 
 
 Pour l'entraînement et l'évaluation d'EMOTYC, les annotations fines (au niveau des segments) sont agrégées au niveau de la phrase par un "aplatissement". Cette agrégation rompt le lien entre une émotion spécifique et son mode d'expression. Pour une phrase contenant deux SitEmo (p. ex. une colère montrée et une tristesse désignée), le vecteur activera `Colère=1`, `Tristesse=1`, `Montré=1` et `Désigné=1`, sans permettre de reconstruire quel mode s'applique à quelle émotion.
@@ -173,9 +170,9 @@ C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". C
 
 
 
-## 2. Performances du modèle EMOTYC
+## 4. Performances du modèle EMOTYC
 
-### Métriques utilisées
+### 4.1 Métriques utilisées
 
 La précision mesure la fiabilité des prédictions positives :
 
@@ -196,7 +193,7 @@ Il porte sur l’ensemble des instances pour lesquelles `y=1`. Une baisse de rap
 
 
 
-### 2.1.1. Répliquer les résultats officiels sur le corpus Test
+### 4.2 Répliquer les résultats officiels sur le corpus Test
 
 Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA et des seuils à 0.5 pour tous les labels :
 
@@ -223,7 +220,7 @@ Performances détaillées label par label :
 ![TablePerformances1](illustrations/TTk_05_context.svg)
 
 
-### 2.1.2. Performance sur CyberAggAdo avec les mêmes paramètres
+### 4.3 Performance sur CyberAggAdo avec les mêmes paramètres
 
 Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet de faire une comparaison honnête en utilisant exactement la même configuration que celle ayant donné les résultats exposé dans la section 2.1. ci-dessus. On obtient donc :
 
@@ -240,26 +237,26 @@ Performances détaillées par label :
 
 
 
-### 4.3 CyberAggAdo — contexte + seuil modes 0.06
+### 4.4 CyberAggAdo — contexte + seuil modes 0.06
 
 **Configuration** : template BCA + contexte + seuil 0.06 pour les 4 labels de mode (seuil 0.5 pour les autres).
 
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
 
 
-### 4.4 TTK — contexte + seuil modes 0.06
+### 4.5 TTK — contexte + seuil modes 0.06
 
 **Configuration** : template BCA + contexte + seuil 0.06 pour les 4 labels de mode.
 
 ![TablePerformancesTTK1](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
-### 4.5 CyberAggAdo — sans contexte + seuil modes 0.06
+### 4.6 CyberAggAdo — sans contexte + seuil modes 0.06
 
 **Configuration** : template BCA (phrase cible seule) + seuil 0.06 pour les 4 labels de mode.
 
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
 
-### 4.6 TTK — sans contexte + seuil modes 0.06
+### 4.7 TTK — sans contexte + seuil modes 0.06
 
 **Configuration** : template BCA (phrase cible seule) + seuil 0.06 pour les 4 labels de mode.
 
@@ -267,19 +264,19 @@ Performances détaillées par label :
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
-### 4.7 Échantillons contigus
+### 4.8 Échantillons contigus
 
 **Configuration** : 4 échantillons de 50 unités textuelles contiguës extraites aléatoirement. Template BCA + contexte + seuil 0.5.
 
 ![TablePerformancesTTK2](illustrations/table_SampleCyberAgg_ContextTemplateAvecEspaceMode05.svg)
 
-### 4.8 Échantillon aléatoire
+### 4.9 Échantillon aléatoire
 
 **Configuration** : 120 unités non contiguës extraites aléatoirement. Sans contexte.
 
 ![TablePerformancesTTK2](illustrations/sample120_CyberAgg_NoContext.svg)
 
-### 4.9 Écarts TTK vs. CyberAggAdo — avec contexte
+### 4.10 Écarts TTK vs. CyberAggAdo — avec contexte
 
 Écarts par label : Δ = score(TTK) − score(CyberAggAdo). Un Δ positif (rouge vif) indique une performance supérieure sur TTK.
 
@@ -287,13 +284,13 @@ $$\Delta = \text{score}_{TTK} - \text{score}_{CyberAggAdo}$$
 
 ![Table Delta Context](illustrations/table_delta_context.svg)
 
-### 4.10 Écarts TTK vs. CyberAggAdo — sans contexte
+### 4.11 Écarts TTK vs. CyberAggAdo — sans contexte
 
 ![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
 
 
-## Remarques relatives à la configuration et aux hyperparamètres
+## 5. Remarques relatives à la configuration et aux hyperparamètres
 
 Le script [`emotyc_predict.py`](emotyc_predict.py) reprend le template "BCA" (_Before, Current, After_) qui est utilisé lors du fine-tuning du modèle :
 
@@ -319,7 +316,7 @@ D'autres tests montrent également que la configuration avec template BCA et `ad
 
 
 
-### Génération d'un rapport HTML
+### 5.1 Génération d'un rapport HTML
 
 Convertit le fichier standardisé `emotyc_predictions_summary.json` (généré par les scripts d'inférence) en un rapport HTML lisible, avec possibilité de regrouper les métriques par dimension sémantique.
 
@@ -331,7 +328,7 @@ python json_summary_to_html.py \
     --groups
 ```
 
-### Contiguité et non contiguité
+### 5.2 Contiguité et non-contiguité
 
 Lance l'inférence de manière séquentielle sur plusieurs fichiers Excel, puis fusionne tous les résultats dans un unique dossier `merged`.
 
@@ -348,13 +345,13 @@ python orchestrate_emotyc_folder.py \
 ```
 
 
-## Remarques relatives à l'optimisation des scripts d'inférence
+## 6. Remarques relatives à l'optimisation des scripts d'inférence
 
 Nous utilisons `torch.inference_mode()`, ce qui évite de construire le graphe de gradients. Dans le cas contraire, sans `torch.inference_mode()`, PyTorch peut conserver des informations pour calculer les gradients plus tard : activations, relations entre opérations, métadonnées de vues, compteurs de version, etc. Ce paramètre permet en partie d'économiser de la mémoire et du temps côté autograd. L'implémentation officielle est [disponible ici](https://github.com/pytorch/pytorch/blob/main/torch/autograd/grad_mode.py).
 
 Le modèle a été testé sur CPU et sur différents GPU. Sur Colab, avec une Tesla T4, nous conseillons d'utiliser `--batch-size 900`.
 
-## Reproductibilité et commandes utilisées
+## 7. Reproductibilité et commandes utilisées
 
 Pour 2.1.1  :
 
