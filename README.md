@@ -123,24 +123,6 @@ python emotyc_predict.py \
     --out_dir ./results/TTK/NoContextTemplateMode006
 ```
 
-### 2. Configurations testées
-
-Les noms des sous-dossiers indiquent les paramètres passés au script. Par exemple, pour générer le dossier **`ContextTemplateAvecEspaceMode006`** sur le corpus TextToKids, la commande exécutée était :
-```bash
-python emotyc_predict_details.py \
-    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
-    --out_dir ./results/TextToKids/ContextTemplateAvecEspaceMode006 \
-    --use-context \
-    --template bca_spaced \
-    --mode-threshold 0.06
-```
-
-Les variantes se déclinent selon ces paramètres :
-- **Template avec ou sans espace** : `--template bca_spaced` (génère un espace après "current:") ou `--template bca` (sans espace).
-- **Avec ou sans contexte** : `--use-context` (ajoute les phrases i-1 et i+1) ou sans cette option (par défaut).
-- **Seuil des modes d'expression** : `--mode-threshold 0.06` (seuil très bas pour optimiser le rappel) ou `--mode-threshold 0.5` (seuil classique).
-
-
 ### Métriques utilisées
 
 La **précision** mesure la fiabilité des prédictions positives :
@@ -170,22 +152,6 @@ L’interprétation des baisses de performance :
 
 
 
-
-
-
-## Performances
-
-### Performances avec contexte + seuil 0.06
-
-
-
-### Performances avec juste la phrase cible + seuil 0.06
-
-#### Sur CyberAggAdo
-
-
-
-#### Sur TextToKids
 
 
 
