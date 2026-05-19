@@ -15,6 +15,23 @@ SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
 
 Une phrase peut contenir zéro, une ou plusieurs unités SitEmo, et les segments de deux SitEmo distinctes peuvent se chevaucher.
 
+Le schéma distingue 12 catégories, chacune regroupant des émotions fines :
+
+| Catégorie | Émotions fines associées |
+|:---|:---|
+| **Colère** | agacement, colère, contestation, désapprobation, énervement, fureur/rage, indignation, irritation, mécontentement, révolte… |
+| **Dégoût** | dégoût, lassitude, répulsion |
+| **Joie** | amusement, enthousiasme, exaltation, joie, plaisir |
+| **Peur** | angoisse, appréhension, effroi, horreur, inquiétude, méfiance, peur, stress |
+| **Surprise** | étonnement, stupeur, surprise |
+| **Tristesse** | blues, chagrin, déception, désespoir, peine, souffrance, tristesse |
+| **Admiration** | admiration |
+| **Culpabilité** | culpabilité |
+| **Embarras** | embarras, gêne, honte, humiliation |
+| **Fierté** | fierté, orgueil |
+| **Jalousie** | jalousie |
+| **Autre** | amour, courage, curiosité, désir, espoir, haine, mépris, soulagement… |
+
 
 Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/abs/1911.03894) auquel on a ajouté une tête de classification multi-label. Cette tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type** :
 
