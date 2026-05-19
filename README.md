@@ -25,15 +25,17 @@ Ainsi, si une instance est étiquetée `Base = 1` dans le gold, cela peut être 
 Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTYC avec ce cadre théorique (p. ex., il ne devrait pas prédire `Base = 1` si aucune émotion de base n'est activée, ni prédire une émotion complexe (p. ex. `Culpabilité = 1`) sans prédire `Complexe = 1`). Cette cohérence n'est pas mesurée ici, mais elle l'est [dans ce script](https://github.com/GwenTsang/EMOTYC/blob/master/scripts/emotyc_sanity_check.py).
 
 Le schéma d'annotation originel s'opère au niveau des segments textuels et est au format Glozz, voir Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
-
-Ici, les corpus testés sont :
+Les corpus testés sont dans le dossier `gold`, il s'agit plus précisément de :
 
 - [TextToKids](`golds/emotexttokids_gold_flat.xlsx`) noté TTK ci-après.
 - [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
-Et deux versions échantillonnées aléatoirement de CyberAggAdo.
-La première est [RandomSample120](`golds/random_sample_120.xlsx`), on expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. L'échantillonage est non-contigu, ce qui signifie que les phrases ne se suivent pas. Il n'y aurait donc pas de sens à utiliser l'option `use-context`.
-Par conséquent, nous avons fait script qui échantillonne des "blocs contigus" dans les XLSX. Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
+
+Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo (script d'échantillonage aléatoire : [prepare_xlsx_samples.py](prepare_xlsx_samples.py)).
+
+
+La première est [randomSample120.xlsx](`golds/random_sample_120.xlsx`). On expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. L'échantillonage est non-contigu, ce qui signifie que les phrases ne se suivent pas. Il n'y aurait donc pas de sens à utiliser l'option `use-context`.
+Par conséquent, nous avons fait un autre script qui échantillonne des "blocs contigus" dans les XLSX. Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
 
 
 
