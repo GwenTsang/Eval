@@ -102,7 +102,7 @@ Le modèle utilise un template **BCA** (_Before, Current, After_) :
 ```txt
 before:{previous_sentence}current:{target_sentence}after:{next_sentence}
 ```
-Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche (`h₀⁽¹²⁾`) qui est transmis à la tête de classification.
+Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche qui est transmis à la tête de classification.
 
 
 Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons procédé à un "aplatissement" pour produire des vecteurs de taille 19.
@@ -123,14 +123,8 @@ C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". C
 
 Nous testons les performances d'EMOTYC sur deux corpus. D'une part, [`emotexttokids_gold_flat.xlsx`](golds/emotexttokids_gold_flat.xlsx), qui est le corpus d'entraînement d'EMOTYC, contenant des articles de presse jeunesse et de la littérature pour enfants. Le sous-ensemble TEST est disponible sur [HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences).
 
-- Fichier gold : 
 
-### 3.2 Corpus CyberAggAdo
-
-Corpus hors-domaine de messages de cyberharcèlement (Ollagnier et al., 2024). Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio.
-
-- Fichier gold : [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx)
-- Scripts d'annotation : [github.com/42009221/AnnotationsCyberAggAdo](https://github.com/42009221/AnnotationsCyberAggAdo)
+D'autre part, un corpus contenant des messages de Cyber Harcèlement. Il s'agit d'une sous-partie du corpus [CyberAgression-Large-v2](https://github.com/aollagnier/CyberAgression-Large) publié par Ollagnier ([2024](https://hal.science/hal-04514689v1/document)). Ce corpus peut être dit "hors-domaine" dans la mesure où le corpus de fine-tuning d'EMOTYC ne contient pas de messages numériques similaires. Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio pour produire [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx) en utilisant [ce script d'annotation](https://github.com/42009221/AnnotationsCyberAggAdo).
 
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
