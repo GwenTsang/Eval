@@ -122,11 +122,7 @@ def load_gold(xlsx_path):
 
 def extract_gold_matrix(df, labels):
     """Extrait la matrice binaire (N, K) du gold pour les colonnes données."""
-    gold = np.zeros((len(df), len(labels)), dtype=int)
-    for j, col in enumerate(labels):
-        vals = pd.to_numeric(df[col], errors="coerce").fillna(0)
-        gold[:, j] = (vals >= 0.5).astype(int)
-    return gold
+    return df[labels].astype(int).values
 
 
 # ═══════════════════════════════════════════════════════════════════════════
