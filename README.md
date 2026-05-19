@@ -28,7 +28,7 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 Ici, les corpus testés sont :
 
-- [TextToKids](`golds/emotexttokids_gold_flat.xlsx`)
+- [TextToKids](`golds/emotexttokids_gold_flat.xlsx`) noté TTK ci-après.
 - [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
 Et une version échantillonnée aléatoirement de CyberAggAdo :
@@ -73,17 +73,32 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 | Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
 
 ### 2.3. Comparaison des performances en modifiant un seuil
+Les résultats sont un petit peu plus favorable pour CyberAggAdo si on utilise un seuil à 0.06 pour les modes, et cela ne dégrade pas la performance sur TTK.
 
-
-
+#### 2.3.1. 
+Les résultats obtenus sur CyberAggAdo sont alors :
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
 
 
-#### Sur TextToKids
+#### 2.3.2. 
 
 ![TablePerformances2](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
+Les commandes utilisées pour produire les résultats dans les sections 2.3.1 et 2.3.2. sont respectivement :
 
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
+    --out_dir ./results/CyberAggAdo/ContextTemplate \
+    --use-context
+```
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
+    --out_dir ./results/CyberAggAdo/ContextTemplate \
+    --use-context
+```
 
 ### 2. Configurations testées
 
