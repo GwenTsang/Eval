@@ -95,6 +95,9 @@ before:{previous_sentence}current:{target_sentence}after:{next_sentence}
 Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche qui est transmis à la tête de classification.
 
 
+
+
+
 Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons procédé à un "aplatissement" pour produire des vecteurs de taille 19.
 
 Les corpus testés sont dans le dossier `gold`, il s'agit plus précisément de :
@@ -125,6 +128,12 @@ Nous testons les performances d'EMOTYC sur deux corpus. D'une part, [`emotexttok
 D'autre part, un corpus contenant des messages de Cyber Harcèlement qui est sous-partie du corpus [CyberAgression-Large-v2](https://github.com/aollagnier/CyberAgression-Large) publié par Ollagnier ([2024](https://hal.science/hal-04514689v1/document)). Ce corpus peut être dit "hors-domaine" dans la mesure où le corpus de fine-tuning d'EMOTYC ne contient pas de messages numériques similaires. Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio pour produire [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx) en utilisant [ce script d'annotation](https://github.com/42009221/AnnotationsCyberAggAdo).
 
 
+
+## 3.1. Echantillons
+
+Le script [`prepare_xlsx_samples.py`](prepare_xlsx_samples.py) permet un échantilonnage aléatoire
+
+
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
 ## 2. Performances du modèle EMOTYC
@@ -146,6 +155,9 @@ $$
 $$
 
 Il porte sur l’ensemble des instances pour lesquelles `y=1`. Une baisse de rappel indique une augmentation des faux négatifs : EMOTYC ne détecte plus certaines occurrences. Cela suggère par ex. que l’émotion concernée est exprimée dans CyberAggAdo par des formes lexicales, discursives ou contextuelles différentes de celles apprises sur TTK (EMOTYC n'ayant jamais vu ces formes, il ne les détecte pas).
+
+
+
 
 ### 2.1.1. Répliquer les résultats officiels sur le corpus Test
 
