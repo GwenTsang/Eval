@@ -39,6 +39,24 @@ Le dossier [`results`](results) contient l'ensemble des inférences déjà gén�
 
 ## 2. Performances du modèle EMOTYC
 
+### Métriques utilisées
+
+La précision mesure la fiabilité des prédictions positives :
+
+$$
+\text{Precision} = \frac{TP}{TP + FP}
+$$
+
+Elle évalue, parmi les instances prédites comme positives par le modèle, la proportion réellement correcte. Une baisse de précision sur CyberAggAdo indique une augmentation des faux positifs : EMOTYC attribue à tort un label émotionnel. Cela suggère que certains indices lexicaux ou contextuels valides dans TTK deviennent trompeurs dans CyberAggAdo.
+
+Le rappel mesure la capacité du modèle à retrouver les instances réellement positives :
+
+$$
+\text{Recall} = \frac{TP}{TP + FN}
+$$
+
+Il porte sur l’ensemble des instances pour lesquelles `y=1`. Une baisse de rappel indique une augmentation des faux négatifs : EMOTYC ne détecte plus certaines occurrences. Cela suggère par ex. que l’émotion concernée est exprimée dans CyberAggAdo par des formes lexicales, discursives ou contextuelles différentes de celles apprises sur TTK (EMOTYC n'ayant jamais vu ces formes, il ne les détecte pas).
+
 ### 2.1.1. Répliquer les résultats officiels sur le corpus Test
 
 Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA et des seuils à 0.5 pour tous les labels :
@@ -125,23 +143,7 @@ Dans CyberAggAdoLarge les erreurs sont un peu plus fortes dans les domaines Reli
 
 ![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
-### Métriques utilisées
 
-La **précision** mesure la fiabilité des prédictions positives :
-
-$$
-\text{Precision} = \frac{TP}{TP + FP}
-$$
-
-Elle évalue donc, parmi les instances prédites comme positives par le modèle, la proportion réellement correcte. Une baisse de précision sur CyberAggAdo indique une augmentation des **faux positifs** : le modèle attribue à tort un label émotionnel à des instances qui ne le portent pas réellement. Cela suggère que certains indices lexicaux ou contextuels valides dans TTK deviennent ambigus ou trompeurs dans CyberAggAdo.
-
-Le **rappel** mesure la capacité du modèle à retrouver les instances réellement positives :
-
-$$
-\text{Recall} = \frac{TP}{TP + FN}
-$$
-
-Il porte donc sur l’ensemble des instances dont le label vrai est positif. Une baisse de rappel indique une augmentation des **faux négatifs** : le modèle ne détecte plus certaines occurrences réelles du label. Cela suggère que l’émotion concernée est exprimée dans CyberAggAdo par des formes lexicales, discursives ou contextuelles différentes de celles apprises sur TTK.
 
 
 
