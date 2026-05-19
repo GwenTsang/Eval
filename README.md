@@ -159,28 +159,6 @@ Un Δ positif indique une baisse de performance lors du transfert de TextToKids 
 
 
 
-Ce tableau a été obtenu avec
-
-```bash
-python delta_heatmap.py \
-  --cyber ./results/CyberAggAdo/NoContextTemplateAvecEspace_Rerun/emotyc_predictions_summary.json \
-  --ttk ./results/TextToKids/NoContextTemplateAvecEspaceMode006/emotyc_predictions_summary.json \
-  --out ./results/heatmap_delta_NoContextTemplateAvecEspaceMode006.html
-```
-
-### Tableau des performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
-
-
-
-Ce tableau a été obtenu avec
-
-```bash
-python delta_heatmap.py \
-  --cyber ./results/CyberAggAdo/ContextTemplateAvecEspaceMode006_Rerun/emotyc_predictions_summary.json \
-  --ttk ./results/TextToKids/ContextTemplateAvecEspaceMode006/emotyc_predictions_summary.json \
-  --out ./results/heatmap_delta_ContextTemplateAvecEspaceMode006.html
-```
-
 
 
 ## Remarques relatives à la configuration et aux hyperparamètres
@@ -248,20 +226,20 @@ Le modèle a été testé sur CPU et sur différents GPU. Sur Colab, avec une Te
 
 Pour 2.1.1  :
 
-```python
+```bash
 python orchestrate_emotyc_folder.py
 ```
 
 Pour 2.1.2 :
 
-```python
+```bash
 python orchestration_cyberaggado.py \
     --out_dir ./results/CyberAggAdo/ContextTemplateMode05 \
 ```
 
 Pour 2.2.1 :
 
-```python
+```bash
 python emotyc_predict.py \
     --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
     --out_dir ./results/CyberAggAdo/ContextTemplateMode006 \
@@ -269,7 +247,7 @@ python emotyc_predict.py \
 ```
 Pour 2.2.2 :
 
-```python
+```bash
 python emotyc_predict.py \
     --xlsx ./golds/emotexttokids_gold_flat.xlsx \
     --out_dir ./results/TTK/ContextTemplateMode006 \
@@ -278,7 +256,7 @@ python emotyc_predict.py \
 
 Pour 2.2.3 :
 
-```python
+```bash
 python emotyc_predict.py \
     --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
     --out_dir ./results/CyberAggAdo/NoContextTemplateMode006
@@ -286,7 +264,7 @@ python emotyc_predict.py \
 
 Pour 2.2.4 :
 
-```python
+```bash
 python emotyc_predict.py \
     --xlsx ./golds/emotexttokids_gold_flat.xlsx \
     --out_dir ./results/TTK/NoContextTemplateMode006
@@ -294,13 +272,30 @@ python emotyc_predict.py \
 
 Pour 2.2.5 :
 
-```python
-!python3 orchestrate_emotyc_folder.py ./golds/xlsx_samples
+```bash
+python3 orchestrate_emotyc_folder.py ./golds/xlsx_samples
 ```
 
 puis
 
-```python
-!python ./illustrations/json_to_svg.py --json ./results/orchestrated_emotyc_xlsx_samples/emotyc_predictions_summary.json
+```bash
+python ./illustrations/json_to_svg.py --json ./results/orchestrated_emotyc_xlsx_samples/emotyc_predictions_summary.json
 ```
 
+Pour 2.2.7.1 : 
+
+```bash
+python delta_heatmap.py \
+  --cyber ./results/CyberAggAdo/ContextTemplateAvecEspaceMode006_Rerun/emotyc_predictions_summary.json \
+  --ttk ./results/TextToKids/ContextTemplateAvecEspaceMode006/emotyc_predictions_summary.json \
+  --out ./results/heatmap_delta_ContextTemplateAvecEspaceMode006.html
+```
+
+Pour 2.2.7.2 : 
+
+```bash
+python delta_heatmap.py \
+  --cyber ./results/CyberAggAdo/NoContextTemplateAvecEspace_Rerun/emotyc_predictions_summary.json \
+  --ttk ./results/TextToKids/NoContextTemplateAvecEspaceMode006/emotyc_predictions_summary.json \
+  --out ./results/heatmap_delta_NoContextTemplateAvecEspaceMode006.html
+```
