@@ -30,8 +30,8 @@ Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons
 
 Les corpus testés sont dans le dossier `gold`, il s'agit plus précisément de :
 
-- [TextToKids](`golds/emotexttokids_gold_flat.xlsx`) noté TTK ci-après.
-- [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
+- [TextToKids](golds/emotexttokids_gold_flat.xlsx) noté TTK ci-après.
+- [CyberAggAdo](golds/CyberAdoAgg_gold_global_total.xlsx)
 
 
 Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo. Le script d'échantillonage aléatoire utilisé est [prepare_xlsx_samples.py](prepare_xlsx_samples.py), dans lequel un `argparse` permet de choisir entre un échantillonage aléatoire ou non.
@@ -156,17 +156,6 @@ Plus la valeur de Δ est proche de 1, plus le rouge est vif, cela indique un éc
 ##### 2.3.2. Performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
 
 ![Table Delta No Context](illustrations/table_delta_no_context.svg)
-
-
-
-
-
-
-
-
-### Tableau des 
-
-
 
 
 
