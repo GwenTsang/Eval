@@ -4,12 +4,14 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 ## Cadre théorique et schéma d'annotation utilisé
 
-Le modèle EMOTYC est basé sur CamemBERT et effectue une classification multi-label portant sur 19 labels (la prédiction est de la forme : [ŷ₁, ..., ŷ₁₉] ∈ {0, 1}¹⁹). Ces 19 labels sont organisés en 4 groupes sémantiques : **le Caractère Émotionnel**, **les Émotions**, **les Modes d'Expression** et **le Type**.
+Le modèle EMOTYC est basé sur CamemBERT et effectue une classification multi-label. Sa tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type**.
 
 <br>
 <p align="center">
   <img src="illustrations/emotyc_output_vector.svg" width="700">
 </p>
+
+Formellement, la prédiction est de la forme : [ŷ₁, ..., ŷ₁₉] ∈ {0, 1}¹⁹.
 
 Les trois labels `Emo`, `Base` et `Complexe` sont déduits des autres labels. Cela s'appuie sur un cadre théorique qui distingue émotions de base et émotions complexes :
 
