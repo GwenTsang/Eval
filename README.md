@@ -34,7 +34,7 @@ Le rapport de recherche qui détaille le schéma d'annotation dans sa version Gl
 
 Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA :
 
-|  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
+|  | Rappel (Macro) | Précision (Macro) | Macro F1 |
 | :--- | :---: | :---: | :---: |
 | Présence d'une émotion | 0.76 | 0.74 | 0.75 |
 | Mode d'expression | 0.63 | 0.67 | 0.64 |
@@ -43,7 +43,7 @@ Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les perform
 
 Nous avons essayé de reproduire à l'identique ces paramètres, en partant du sous-ensemble TEST du [corpus TTK donné sur HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences/blob/main/data/test-00000-of-00001.parquet) ainsi qu'avec les poids du modèle donnés sur [HuggingFace](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids) à travers le script `emotyc_predict_parquet.py`, qui a été exécuté dans un [notebook Colab T4](https://colab.research.google.com/drive/17dVMtpKE4Ca2eKJ_tDvaUa1FF-e6igjn?usp=sharing). Mais les performances obtenues sont supérieures à celles qui sont documentées dans l'article :
 
-|  | Rappel (Macro R) | Précision (Macro P) | Macro F1 |
+|  | Rappel (Macro) | Précision (Macro) | Macro F1 |
 | :--- | :---: | :---: | :---: |
 | Présence d'une émotion | 0.93 | 0.92 | 0.92 |
 | Mode d'expression | 0.81 | 0.82 | 0.81 |
