@@ -61,6 +61,11 @@ Nous avons essayé de reproduire à l'identique ces paramètres, en partant du s
 
 Une hypothèse pour expliquer ces écarts serait que les résultats donnés dans l'article découlent d'une moyenne des performances des différents "checkpoints" du modèle EMOTYC (une moyenne de ses performances à travers les epochs), et qu'on accède, via le dépôt HuggingFace, aux meilleurs checkpoints (aux meilleurs poids).
 
+Performances détaillées label par label :
+
+![TablePerformances1](illustrations/TTk_05_context.svg)
+
+
 ### 2.2. Performance sur CyberAggAdo avec les mêmes paramètres
 
 Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet de faire une comparaison honnête en utilisant exactement la même configuration que celle ayant donné les résultats exposé dans la section 2.1. ci-dessus. On obtient donc :
@@ -71,6 +76,10 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 | Mode d'expression | 0.25 | 0.34 | 0.28 |
 | Type | 0.49 | 0.42 | 0.42 |
 | Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
+
+Performances détaillées par label :
+
+![TablePerformances1](illustrations/CyberAggAdo_seuil05_context.svg)
 
 ### 2.3. Comparaison des performances en modifiant un seuil
 
