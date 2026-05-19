@@ -2,9 +2,9 @@
 
 Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans. EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
 
-## 1. Cadre théorique et schéma d'annotation utilisé
+# 1. Cadre théorique et schéma d'annotation utilisé
 
-### 1.1 L'Unité d'annotation
+## 1.1 L'Unité d'annotation
 
 Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*. L'unité d'annotation est la `SitEmo` (pour "Situation Émotionnelle"). Chaque SitEmo est un triplet :
 
@@ -15,7 +15,7 @@ SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
 
 Une phrase peut contenir zéro, une ou plusieurs unités SitEmo, et les segments de deux SitEmo distinctes peuvent se chevaucher.
 
-### 1.2 Les catégories émotionnelles
+## 1.2 Les catégories émotionnelles
 
 Le schéma distingue 12 catégories émotionnelles, chacune regroupant des émotions fines :
 
@@ -34,7 +34,7 @@ Le schéma distingue 12 catégories émotionnelles, chacune regroupant des émot
 | **Jalousie** | jalousie |
 | **Autre** | amour, courage, curiosité, désir, espoir, haine, mépris, soulagement… |
 
-### 1.3 Les modes d'expression
+## 1.3 Les modes d'expression
 
 Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il exprime. Il repose sur la typologie de Micheli (2014), adaptée par Etienne (2023) :
 
