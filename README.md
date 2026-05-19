@@ -5,9 +5,7 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 ## 1. Cadre théorique et schéma d'annotation utilisé
 
 
-Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*.
-
-L'unité fondamentale d'annotation est la **SitEmo** (situation émotionnelle). Chaque SitEmo est un triplet :
+Le schéma d'annotation utilisé est celui proposé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)) et développé dans Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)). Il modélise l'expression émotionnelle dans les textes à travers la notion d'*événement émotionnel*. L'unité d'annotation est la `SitEmo` (pour "Situation Émotionnelle"). Chaque SitEmo est un triplet :
 
 
 SitEmo = (Span ; Catégorie émotionnelle ; Mode d'expression)
