@@ -37,13 +37,11 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 - [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
 
-- [6. Génération d’un rapport HTML](#6-génération-dun-rapport-html)
 
-- [7. Contiguïté et non-contiguïté](#7-contiguïté-et-non-contiguïté)
 
-- [8. Remarques relatives à l’optimisation des scripts d’inférence](#8-remarques-relatives-à-loptimisation-des-scripts-dinférence)
+- [Remarques relatives à l’optimisation des scripts d’inférence](#8-remarques-relatives-à-loptimisation-des-scripts-dinférence)
 
-- [9. Reproductibilité et commandes utilisées](#9-reproductibilité-et-commandes-utilisées)
+- [Reproductibilité et commandes utilisées](#9-reproductibilité-et-commandes-utilisées)
 
    
 # 1. Cadre théorique et schéma d'annotation utilisé
