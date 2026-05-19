@@ -34,7 +34,7 @@ Ici, les corpus testés sont :
 Et une version échantillonnée aléatoirement de CyberAggAdo :
 
 - [RandomSample120](`golds/random_sample_120.xlsx`) : 120 lignes
-- 
+
 Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
 ## 2. Résultats
