@@ -132,18 +132,6 @@ Il porte donc sur l’ensemble des instances dont le label vrai est positif. Une
 
 
 
-L’interprétation des baisses de performance :
-
-* **Baisse de précision, rappel stable** : le modèle détecte encore les vraies occurrences, mais produit davantage de fausses alertes. Il devient moins discriminant dans le nouveau domaine.
-* **Baisse de rappel, précision stable** : le modèle reste fiable lorsqu’il prédit le label, mais manque de nombreuses occurrences réelles. Il devient moins sensible aux formes d’expression propres à CyberAggAdo.
-* **Baisse conjointe de la précision, du rappel et du F1-score** : le transfert révèle un décalage de domaine. Les indices associés au label dans TTK ne se généralisent pas correctement à CyberAggAdo, ce qui traduit une difficulté du modèle à adapter ses représentations au nouveau corpus.
-
-
-
-
-
-
-
 ## Performances relatives : écarts par rapport à TextToKids
 
 Ci-dessous, deux tableaux issus de [`delta_heatmap.py`](delta_heatmap.py). Les résultats correspondent aux écarts signés par label (Δ = TTK − Cyber). Un Δ positif indique une performance supérieure sur TextToKids ; un Δ négatif indique une performance supérieure sur CyberAggAdo.
