@@ -24,7 +24,7 @@ Ainsi, si une instance est étiquetée `Base = 1` dans le gold, cela peut être 
 
 Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTYC avec ce cadre théorique (p. ex., il ne devrait pas prédire `Base = 1` si aucune émotion de base n'est activée, ni prédire une émotion complexe — par exemple `Culpabilité = 1` — sans prédire `Complexe = 1`). Cette cohérence n'est pas mesurée ici, mais elle l'est [dans ce script](https://github.com/GwenTsang/EMOTYC/blob/master/scripts/emotyc_sanity_check.py).
 
-Le rapport de recherche qui détaille le schéma d'annotation dans sa version Glozz est détaillé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
+Le schéma d'annotation originel s'opère au niveau des segments textuels et est au format Glozz (voir Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
 
 Ici, les corpus testés sont :
 
