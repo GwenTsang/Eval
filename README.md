@@ -95,7 +95,13 @@ où chaque $\hat{y}_i$ est dans l'intervalle {0, 1}.
 
 Etienne et al. (2024, p. 5) rapportent une stratégorie de fine-tuning en deux temps. Dans une première phase, ils ont fait l'affinage sur la seule tâche de détection de présence/absence d'émotion (1 sortie binaire). Dans un second temps, ils ont fait un affinage multi-tâches sur les 19 labels simultanément, à partir des poids de la phase 1. L'optimiseur est Adam (lr = 10⁻⁵, pas de decay, batch size = 8) avec une pondération des classes plafonnée à 50 pour gérer le déséquilibre.
 
+### 2.2 Format d'entrée
 
+Le modèle utilise un template **BCA** (_Before, Current, After_) :
+
+before:{previous_sentence}current:{target_sentence}after:{next_sentence}
+
+Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche (`h₀⁽¹²⁾`) qui est transmis à la tête de classification.
 
 
 Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons procédé à un "aplatissement" pour produire des vecteurs de taille 19.
