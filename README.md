@@ -47,8 +47,9 @@ Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il expr
 
 Une unité SitEmo ne peut recevoir qu'un seul mode.
 
+## 1.3 Les 3 types
 
-Les 12 catégories sont regroupées en trois types :
+Les 12 catégories émotinonnelles sont regroupées en trois types :
 
 <br>
 <p align="center">
