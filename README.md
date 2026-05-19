@@ -2,6 +2,37 @@
 
 Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](https://huggingface.co/TextToKids/CamemBERT-base-EmoTextToKids)** sur le corpus [CyberAgression-Large](https://github.com/aollagnier/CyberAgression-Large), contenant des messages de cyberharcèlement en français rédigés par des jeunes âgés de 11 à 18 ans. EMOTYC a été conçu par Etienne ([2023](https://bdr.parisnanterre.fr/theses/internet/2023/2023PA100047/2023PA100047.pdf)) dans le cadre du projet [ANR TextToKids](https://texttokids.irisa.fr/publications/)
 
+
+
+# Table des matières
+
+1. [Schéma d'annotation](#1-schéma-dannotation)
+   - 1.1 [Unité d'annotation : la SitEmo](#11-unité-dannotation--la-sitemo)
+   - 1.2 [Les catégories émotionnelles](#12-les-catégories-émotionnelles)
+   - 1.3 [Les modes d'expression](#13-les-modes-dexpression)
+   - 1.4 [Le type (base / complexe)](#14-le-type-base--complexe)
+   - 1.5 [Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique--le-vecteur-à-19-labels)
+2. [Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
+   - 2.1 [De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
+   - 2.2 [Format d'entrée et rôle du token en position 0](#22-format-dentrée-et-rôle-du-token-en-position-0)
+3. [Données évaluées](#3-données-évaluées)
+   - 3.1 [Corpus TextToKids (TTK)](#31-corpus-texttokids-ttk)
+   - 3.2 [Corpus CyberAggAdo](#32-corpus-cyberaggado)
+   - 3.3 [Échantillons](#33-échantillons)
+4. [Résultats expérimentaux](#4-résultats-expérimentaux)
+   - 4.1 [Métriques utilisées](#41-métriques-utilisées)
+   - 4.2 [Réplication des résultats officiels sur TTK](#42-réplication-des-résultats-officiels-sur-ttk)
+   - 4.3 [Performance sur CyberAggAdo (configuration identique)](#43-performance-sur-cyberaggado-configuration-identique)
+   - 4.4 [Effet du seuil de décision sur les modes](#44-effet-du-seuil-de-décision-sur-les-modes)
+   - 4.5 [Effet du contexte (phrases adjacentes)](#45-effet-du-contexte-phrases-adjacentes)
+   - 4.6 [Performances sur échantillons](#46-performances-sur-échantillons)
+   - 4.7 [Écarts de performance TTK vs. CyberAggAdo](#47-écarts-de-performance-ttk-vs-cyberaggado)
+5. [Reproductibilité](#5-reproductibilité)
+   - 5.1 [Prérequis techniques](#51-prérequis-techniques)
+   - 5.2 [Commandes par expérience](#52-commandes-par-expérience)
+6. [Structure du dépôt](#6-structure-du-dépôt)
+
+   
 # 1. Cadre théorique et schéma d'annotation utilisé
 
 ## 1.1 L'Unité d'annotation
@@ -199,53 +230,56 @@ Performances détaillées par label :
 
 ![TablePerformances1](illustrations/CyberAggAdo_seuil05_context.svg)
 
-### 2.2. Comparaison des performances en modifiant un seuil
 
-Les résultats sont un petit peu plus favorable pour CyberAggAdo si on utilise un seuil à 0.06 pour les modes, et cela ne dégrade pas la performance sur TTK.
 
-#### 2.2.1. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+### 4.3 CyberAggAdo — contexte + seuil modes 0.06
 
-Les résultats obtenus sur CyberAggAdo sont alors :
+**Configuration** : template BCA + contexte + seuil 0.06 pour les 4 labels de mode (seuil 0.5 pour les autres).
+
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
 
 
-#### 2.2.2. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur TTK
+### 4.4 TTK — contexte + seuil modes 0.06
+
+**Configuration** : template BCA + contexte + seuil 0.06 pour les 4 labels de mode.
 
 ![TablePerformancesTTK1](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
-#### 2.2.3. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+### 4.5 CyberAggAdo — sans contexte + seuil modes 0.06
+
+**Configuration** : template BCA (phrase cible seule) + seuil 0.06 pour les 4 labels de mode.
 
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
 
-#### 2.2.4. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
+### 4.6 TTK — sans contexte + seuil modes 0.06
 
-Dans CyberAggAdoLarge les erreurs sont un peu plus fortes dans les domaines Religion et Homophobie que dans Obésité et Racisme. Étant donné que Obésité est un corpus plus grand que les autres, cela fait que lorsqu’on agrège tous les corpus avec tirage aléatoire, les performances sont très légèrement moins hautes.
+**Configuration** : template BCA (phrase cible seule) + seuil 0.06 pour les 4 labels de mode.
+
+> **Observation** : dans CyberAggAdo, les erreurs sont légèrement plus élevées sur les domaines Religion et Homophobie que sur Obésité et Racisme. Obésité étant un corpus plus grand, l'agrégation par tirage aléatoire donne des performances très légèrement inférieures.
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
-#### 2.2.5. Performance d'EMOTYC sur 4 échantillons de 50 unités textuelles contigues extraites aléatoirement (avec contexte et seuil 05)
+### 4.7 Échantillons contigus
+
+**Configuration** : 4 échantillons de 50 unités textuelles contiguës extraites aléatoirement. Template BCA + contexte + seuil 0.5.
 
 ![TablePerformancesTTK2](illustrations/table_SampleCyberAgg_ContextTemplateAvecEspaceMode05.svg)
 
-#### 2.2.6. Performances d'EMOTYC sur un échantillon de 120 unités (non contigues) extraites aléatoirement
+### 4.8 Échantillon aléatoire
+
+**Configuration** : 120 unités non contiguës extraites aléatoirement. Sans contexte.
 
 ![TablePerformancesTTK2](illustrations/sample120_CyberAgg_NoContext.svg)
 
-#### 2.3 Performances relatives (écarts) 
+### 4.9 Écarts TTK vs. CyberAggAdo — avec contexte
 
-Ci-dessous, deux tableaux issus de [`delta_heatmap.py`](delta_heatmap.py). Les résultats correspondent aux écarts par label (Δ = TTK − Cyber). Un Δ positif indique une performance supérieure sur TextToKids tandis qu'un Δ négatif indique une performance supérieure sur CyberAggAdo.
+Écarts par label : Δ = score(TTK) − score(CyberAggAdo). Un Δ positif (rouge vif) indique une performance supérieure sur TTK.
 
-$$
-\Delta = \text{score}_{TTK} - \text{score}_{CyberAggAdo}
-$$
-
-Plus la valeur de Δ est proche de 1, plus le rouge est vif, cela indique un écart de performance important entre TextToKids (TTK) et CyberAggAdo.
-
-##### 2.3.1. Performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
+$$\Delta = \text{score}_{TTK} - \text{score}_{CyberAggAdo}$$
 
 ![Table Delta Context](illustrations/table_delta_context.svg)
 
-##### 2.3.2. Performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
+### 4.10 Écarts TTK vs. CyberAggAdo — sans contexte
 
 ![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
