@@ -91,7 +91,11 @@ EMOTYC est une version fine-tunée de [CamemBERT-base](https://arxiv.org/abs/191
 
 $$\hat{\mathbf{y}} = [\hat{y}_1, \ldots, \hat{y}_{19}] $$
 
-où chaque $\hat{y}_1$ est dans l'intervalle {0, 1}.
+où chaque $\hat{y}_i$ est dans l'intervalle {0, 1}.
+
+
+Etienne et al. (2024, p. 5) rapportent une stratégorie de fine-tuning en deux temps. Dans une première phase, ils ont fait l'affinage sur la seule tâche de détection de présence/absence d'émotion (1 sortie binaire). Dans un second temps, ils ont fait un affinage multi-tâches sur les 19 labels simultanément, à partir des poids de la phase 1.
+
 
 
 
