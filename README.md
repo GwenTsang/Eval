@@ -101,6 +101,8 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 #### 2.2.4. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
 
+Dans CyberAggAdoLarge les erreurs sont un peu plus fortes dans les domaines Religion et Homophobie que dans Obésité et Racisme. Étant donné que Obésité est un corpus plus grand que les autres, cela fait que lorsqu’on agrège tous les corpus avec tirage aléatoire, les performances sont très légèrement moins hautes.
+
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
 #### 2.2.5. Performance d'EMOTYC sur 4 échantillons de 50 unités textuelles contigues extraites aléatoirement (avec contexte et seuil 05)
