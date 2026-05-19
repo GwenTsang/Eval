@@ -95,11 +95,11 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 ![TablePerformancesTTK1](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
-#### 2.3.3. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+#### 2.3.3. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
 
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
 
-#### 2.3.4. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
+#### 2.3.4. Performance d'EMOTYC sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
 
 ![TablePerformancesTTK2](illustrations/table_metriques_TTK_NoContext_Mode_006.svg)
 
