@@ -31,7 +31,11 @@ Ici, les corpus testés sont :
 - [TextToKids](`golds/emotexttokids_gold_flat.xlsx`) noté TTK ci-après.
 - [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
-Et deux versions échantillonnées aléatoirement de CyberAggAdo, la première est [RandomSample120](`golds/random_sample_120.xlsx`)
+Et deux versions échantillonnées aléatoirement de CyberAggAdo.
+La première est [RandomSample120](`golds/random_sample_120.xlsx`), on expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. L'échantillonage est non-contigu, ce qui signifie que les phrases ne se suivent pas. Il n'y aurait donc pas de sens à utiliser l'option `use-context`.
+Par conséquent, nous avons fait script qui échantillonne des "blocs contigus" dans les XLSX. Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
+
+
 
 
 
