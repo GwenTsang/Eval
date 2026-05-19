@@ -111,15 +111,15 @@ Les résultats obtenus sur CyberAggAdo sont alors :
 
 ![TablePerformancesTTK2](illustrations/sample120_CyberAgg_NoContext.svg)
 
-#### 2.2.7. Performances relatives (écarts) 
+#### 2.3 Performances relatives (écarts) 
 
 
 
-##### 2.2.7.1. Performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
+##### 2.3.1. Performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
 
 ![Table Delta Context](illustrations/table_delta_context.svg)
 
-##### 2.2.7.2. Performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
+##### 2.3.2. Performances TTK _vs_ CyberAggAdo sans les phrases adjacentes :
 
 ![Table Delta No Context](illustrations/table_delta_no_context.svg)
 
@@ -282,7 +282,7 @@ puis
 python ./illustrations/json_to_svg.py --json ./results/orchestrated_emotyc_xlsx_samples/emotyc_predictions_summary.json
 ```
 
-Pour 2.2.7.1 : 
+Pour 2.3.1 : 
 
 ```bash
 python delta_heatmap.py \
@@ -291,7 +291,7 @@ python delta_heatmap.py \
   --out ./results/heatmap_delta_ContextTemplateAvecEspaceMode006.html
 ```
 
-Pour 2.2.7.2 : 
+Pour 2.3.2 : 
 
 ```bash
 python delta_heatmap.py \
