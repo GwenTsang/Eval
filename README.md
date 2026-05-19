@@ -6,31 +6,44 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 # Table des matières
 
-1. [Schéma d'annotation](#1-schéma-dannotation)
-   - 1.1 [Unité d'annotation : la SitEmo](#11-unité-dannotation--la-sitemo)
-   - 1.2 [Les catégories émotionnelles](#12-les-catégories-émotionnelles)
-   - 1.3 [Les modes d'expression](#13-les-modes-dexpression)
-   - 1.4 [Le type (base / complexe)](#14-le-type-base--complexe)
-   - 1.5 [Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique--le-vecteur-à-19-labels)
-2. [Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
-   - 2.1 [De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
-   - 2.2 [Format d'entrée et rôle du token en position 0](#22-format-dentrée-et-rôle-du-token-en-position-0)
-3. [Données évaluées](#3-données-évaluées)
-   - 3.1 [Corpus TextToKids (TTK)](#31-corpus-texttokids-ttk)
-   - 3.2 [Corpus CyberAggAdo](#32-corpus-cyberaggado)
-   - 3.3 [Échantillons](#33-échantillons)
-4. [Résultats expérimentaux](#4-résultats-expérimentaux)
-   - 4.1 [Métriques utilisées](#41-métriques-utilisées)
-   - 4.2 [Réplication des résultats officiels sur TTK](#42-réplication-des-résultats-officiels-sur-ttk)
-   - 4.3 [Performance sur CyberAggAdo (configuration identique)](#43-performance-sur-cyberaggado-configuration-identique)
-   - 4.4 [Effet du seuil de décision sur les modes](#44-effet-du-seuil-de-décision-sur-les-modes)
-   - 4.5 [Effet du contexte (phrases adjacentes)](#45-effet-du-contexte-phrases-adjacentes)
-   - 4.6 [Performances sur échantillons](#46-performances-sur-échantillons)
-   - 4.7 [Écarts de performance TTK vs. CyberAggAdo](#47-écarts-de-performance-ttk-vs-cyberaggado)
-5. [Reproductibilité](#5-reproductibilité)
-   - 5.1 [Prérequis techniques](#51-prérequis-techniques)
-   - 5.2 [Commandes par expérience](#52-commandes-par-expérience)
-6. [Structure du dépôt](#6-structure-du-dépôt)
+- [Introduction](#évaluation-du-modèle-emotyc)
+
+- [1. Cadre théorique et schéma d’annotation utilisé](#1-cadre-théorique-et-schéma-dannotation-utilisé)
+  - [1.1. L’unité d’annotation](#11-lunité-dannotation)
+  - [1.2. Les catégories émotionnelles](#12-les-catégories-émotionnelles)
+  - [1.3. Les modes d’expression](#13-les-modes-dexpression)
+  - [1.4. Les trois types](#14-les-trois-types)
+  - [1.5. Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique--le-vecteur-à-19-labels)
+
+- [2. Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
+  - [2.1. De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
+  - [2.2. Format d’entrée](#22-format-dentrée)
+
+- [3. Données évaluées](#3-données-évaluées)
+  - [3.1. Échantillons](#31-echantillons)
+
+- [4. Performances du modèle EMOTYC](#4-performances-du-modèle-emotyc)
+  - [4.1. Métriques utilisées](#41-métriques-utilisées)
+  - [4.2. Répliquer les résultats officiels sur le corpus Test](#42-répliquer-les-résultats-officiels-sur-le-corpus-test)
+  - [4.3. Performance sur CyberAggAdo avec les mêmes paramètres](#43-performance-sur-cyberaggado-avec-les-mêmes-paramètres)
+  - [4.4. CyberAggAdo — contexte + seuil modes 0.06](#44-cyberaggado--contexte--seuil-modes-006)
+  - [4.5. TTK — contexte + seuil modes 0.06](#45-ttk--contexte--seuil-modes-006)
+  - [4.6. CyberAggAdo — sans contexte + seuil modes 0.06](#46-cyberaggado--sans-contexte--seuil-modes-006)
+  - [4.7. TTK — sans contexte + seuil modes 0.06](#47-ttk--sans-contexte--seuil-modes-006)
+  - [4.8. Échantillons contigus](#48-échantillons-contigus)
+  - [4.9. Échantillon aléatoire](#49-échantillon-aléatoire)
+  - [4.10. Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado--avec-contexte)
+  - [4.11. Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado--sans-contexte)
+
+- [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
+
+- [6. Génération d’un rapport HTML](#6-génération-dun-rapport-html)
+
+- [7. Contiguïté et non-contiguïté](#7-contiguïté-et-non-contiguïté)
+
+- [8. Remarques relatives à l’optimisation des scripts d’inférence](#8-remarques-relatives-à-loptimisation-des-scripts-dinférence)
+
+- [9. Reproductibilité et commandes utilisées](#9-reproductibilité-et-commandes-utilisées)
 
    
 # 1. Cadre théorique et schéma d'annotation utilisé
