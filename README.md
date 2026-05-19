@@ -73,16 +73,6 @@ Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTY
 
 
 
-
-Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/abs/1911.03894) auquel on a ajouté une tête de classification multi-label. Cette tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type** :
-
-<br>
-<p align="center">
-  <img src="illustrations/emotyc_output_vector.svg" width="700">
-</p>
-Les labels `Emo`, `Base` et `Complexe` sont logiquement impliqués par les autres labels. Par exemple, `Base = 1` si et seulement si au moins l'une des 6 émotions de base est à `1`.
-
-
 ## 2. Architecture du modèle EMOTYC
 
 ### 2.1 De CamemBERT-base à EMOTYC
@@ -119,12 +109,20 @@ Ainsi, d'un côté, par un échantillonage non-contigu, nous avons obtenu [rando
 C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
 
 
+
+<br>
+<p align="center">
+  <img src="illustrations/emotyc_output_vector.svg" width="700">
+</p>
+Les labels `Emo`, `Base` et `Complexe` sont logiquement impliqués par les autres labels. Par exemple, `Base = 1` si et seulement si au moins l'une des 6 émotions de base est à `1`.
+
+
+
 ## 3. Données évaluées
 
 Nous testons les performances d'EMOTYC sur deux corpus. D'une part, [`emotexttokids_gold_flat.xlsx`](golds/emotexttokids_gold_flat.xlsx), qui est le corpus d'entraînement d'EMOTYC, contenant des articles de presse jeunesse et de la littérature pour enfants. Le sous-ensemble TEST est disponible sur [HuggingFace](https://huggingface.co/datasets/TextToKids/EmoTextToKids-sentences).
 
-
-D'autre part, un corpus contenant des messages de Cyber Harcèlement. Il s'agit d'une sous-partie du corpus [CyberAgression-Large-v2](https://github.com/aollagnier/CyberAgression-Large) publié par Ollagnier ([2024](https://hal.science/hal-04514689v1/document)). Ce corpus peut être dit "hors-domaine" dans la mesure où le corpus de fine-tuning d'EMOTYC ne contient pas de messages numériques similaires. Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio pour produire [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx) en utilisant [ce script d'annotation](https://github.com/42009221/AnnotationsCyberAggAdo).
+D'autre part, un corpus contenant des messages de Cyber Harcèlement qui est sous-partie du corpus [CyberAgression-Large-v2](https://github.com/aollagnier/CyberAgression-Large) publié par Ollagnier ([2024](https://hal.science/hal-04514689v1/document)). Ce corpus peut être dit "hors-domaine" dans la mesure où le corpus de fine-tuning d'EMOTYC ne contient pas de messages numériques similaires. Nous avons annoté 781 lignes selon le schéma d'Etienne (2023) via Label Studio pour produire [`golds/CyberAdoAgg_gold_global_total.xlsx`](golds/CyberAdoAgg_gold_global_total.xlsx) en utilisant [ce script d'annotation](https://github.com/42009221/AnnotationsCyberAggAdo).
 
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
