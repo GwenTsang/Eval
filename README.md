@@ -26,7 +26,16 @@ Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTY
 
 Le rapport de recherche qui détaille le schéma d'annotation dans sa version Glozz est détaillé par Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
 
+Ici, les corpus testés sont :
 
+- [TextToKids](`golds/emotexttokids_gold_flat.xlsx`)
+- [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
+
+Et une version échantillonnée aléatoirement de CyberAggAdo :
+
+- [RandomSample120](`golds/random_sample_120.xlsx`) : 120 lignes
+- 
+Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
 ## 2. Résultats
 
@@ -63,16 +72,9 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 | Type | 0.49 | 0.42 | 0.42 |
 | Catégorie émotionnelle | 0.35 | 0.20 | 0.23 |
 
-Le dossier `results/` contient l'ensemble des inférences déjà générées par les scripts d'inférence. Elles sont organisées par corpus évalué et par configuration testée (template, contexte, seuil des modes).
 
-### 1. Corpus évalués
 
-- [TextToKids](`golds/emotexttokids_gold_flat.xlsx`)
-- [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
-Et une version échantillonnée aléatoirement de CyberAggAdo :
-
-- [RandomSample120](`golds/random_sample_120.xlsx`) : 120 lignes
 
 ### 2. Configurations testées
 
