@@ -141,8 +141,14 @@ Dans CyberAggAdoLarge les erreurs sont un peu plus fortes dans les domaines Reli
 
 #### 2.3 Performances relatives (écarts) 
 
+Ci-dessous, deux tableaux issus de [`delta_heatmap.py`](delta_heatmap.py). Les résultats correspondent aux écarts signés par label (Δ = TTK − Cyber). Un Δ positif indique une performance supérieure sur TextToKids ; un Δ négatif indique une performance supérieure sur CyberAggAdo.
 
 
+$$
+\Delta = \text{score}_{TTK} - \text{score}_{CyberAggAdo}
+$$
+
+Un Δ positif indique une baisse de performance lors du transfert de TextToKids (TTK) vers CyberAggAdo.
 ##### 2.3.1. Performances TTK _vs_ CyberAggAdo avec les phrases adjacentes :
 
 ![Table Delta Context](illustrations/table_delta_context.svg)
@@ -155,16 +161,7 @@ Dans CyberAggAdoLarge les erreurs sont un peu plus fortes dans les domaines Reli
 
 
 
-## 
 
-Ci-dessous, deux tableaux issus de [`delta_heatmap.py`](delta_heatmap.py). Les résultats correspondent aux écarts signés par label (Δ = TTK − Cyber). Un Δ positif indique une performance supérieure sur TextToKids ; un Δ négatif indique une performance supérieure sur CyberAggAdo.
-
-
-$$
-\Delta = \text{score}_{TTK} - \text{score}_{CyberAggAdo}
-$$
-
-Un Δ positif indique une baisse de performance lors du transfert de TextToKids (TTK) vers CyberAggAdo.
 
 
 ### Tableau des 
