@@ -37,9 +37,9 @@ Et une version échantillonnée aléatoirement de CyberAggAdo :
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
 
-## 2. Résultats
+## 2. Performances du modèle EMOTYC
 
-### 2.1. Répliquer les résultats officiels
+### 2.1. Répliquer les résultats officiels sur le corpus Test
 
 Etienne et al. ([2024](https://arxiv.org/abs/2405.14385)) rapportent les performances suivantes, sur le sous ensemble TEST du corpus TTK, avec les phrases adjacentes (contexte) injectées dans le template BCA et des seuils à 0.5 pour tous les labels :
 
@@ -75,29 +75,51 @@ Le script [`orchestration_cyberaggado.py`](orchestration_cyberaggado.py) permet 
 ### 2.3. Comparaison des performances en modifiant un seuil
 Les résultats sont un petit peu plus favorable pour CyberAggAdo si on utilise un seuil à 0.06 pour les modes, et cela ne dégrade pas la performance sur TTK.
 
-#### 2.3.1. 
+#### 2.3.1. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+
 Les résultats obtenus sur CyberAggAdo sont alors :
 ![TablePerformances1](illustrations/table_metriques_CyberAggAdo_Context_Mode_006.svg)
 
 
-#### 2.3.2. 
+#### 2.3.2. Performance d'EMOTYC avec le contexte (phrases adjacentes) + seuil à 0.06 pour les 4 modes sur TTK
 
 ![TablePerformances2](illustrations/table_metriques_TTK_Context_Mode_006.svg)
 
-Les commandes utilisées pour produire les résultats dans les sections 2.3.1 et 2.3.2. sont respectivement :
+#### 2.3.3. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur CyberAggAdo
+
+![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
+
+#### 2.3.4. Performance d'EMOTYC avec sans contexte (juste phrase cible) + seuil à 0.06 pour les 4 modes sur TTK
+
+![TablePerformances2](illustrations/table_metriques_TTK_NoContextModes_006.svg)
+
+
+Les commandes utilisées pour produire les résultats dans les sections 2.3.1, 2.3.2, 2.3.3 et 2.3.4 sont respectivement :
 
 ```python
 python emotyc_predict.py \
     --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
-    --out_dir ./results/CyberAggAdo/ContextTemplate \
+    --out_dir ./results/CyberAggAdo/ContextTemplateMode006 \
     --use-context
 ```
 
 ```python
 python emotyc_predict.py \
     --xlsx ./golds/emotexttokids_gold_flat.xlsx \
-    --out_dir ./results/CyberAggAdo/ContextTemplate \
+    --out_dir ./results/TTK/ContextTemplateMode006 \
     --use-context
+```
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/CyberAdoAgg_gold_global_total.xlsx \
+    --out_dir ./results/CyberAggAdo/NoContextTemplateMode006
+```
+
+```python
+python emotyc_predict.py \
+    --xlsx ./golds/emotexttokids_gold_flat.xlsx \
+    --out_dir ./results/TTK/NoContextTemplateMode006
 ```
 
 ### 2. Configurations testées
@@ -160,12 +182,10 @@ L’interprétation des baisses de performance :
 
 #### Sur CyberAggAdo
 
-![TablePerformances1](illustrations/table_metriques_CyberAggAdo_NoContextModes_006.svg)
 
 
 #### Sur TextToKids
 
-![TablePerformances2](illustrations/table_metriques_TTK_NoContextModes_006.svg)
 
 
 ## Performances relatives : écarts par rapport à TextToKids
