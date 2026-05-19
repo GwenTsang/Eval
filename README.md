@@ -47,7 +47,7 @@ Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il expr
 
 Une unité SitEmo ne peut recevoir qu'un seul mode.
 
-## 1.3 Les 3 types
+## 1.3 Les trois types
 
 Les 12 catégories émotinonnelles sont regroupées en trois types :
 
@@ -56,9 +56,14 @@ Les 12 catégories émotinonnelles sont regroupées en trois types :
   <img src="illustrations/types_emotions.svg" width="700">
 </p>
 
+Le type est déductible de la catégorie émotionnelle annotée.
+
+## Transposition au niveau phrastique : le vecteur à 19 labels
 
 
-Les trois labels `Emo`, `Base` et `Complexe` sont déduits des autres labels. Cela s'appuie sur un cadre théorique qui distingue émotions de base et émotions complexes :
+Pour l'entraînement et l'évaluation d'EMOTYC, les annotations fines (au niveau des segments) sont agrégées au niveau de la phrase par un "aplatissement". Cette agrégation rompt le lien entre une émotion spécifique et son mode d'expression. Pour une phrase contenant deux SitEmo (p. ex. une colère montrée et une tristesse désignée), le vecteur activera `Colère=1`, `Tristesse=1`, `Montré=1` et `Désigné=1`, sans permettre de reconstruire quel mode s'applique à quelle émotion.
+
+Si au moins un segment de la phrase porte une propriété donnée, le label correspondant est activé (`1`) pour la phrase entière (si une phrase contient deux segments exprimant la colère, elle est associée à un vecteur dont le 10ème indice est 1, tout comme une phrase qui l'exprime sur un seul segment).
 
 
 
