@@ -269,6 +269,11 @@ python emotyc_predict.py \
     --xlsx ./golds/emotexttokids_gold_flat.xlsx \
     --out_dir ./results/TTK/NoContextTemplateMode006
 ```
+Puis
+
+```bash
+python ./illustrations/json_to_svg.py --json ./results/TTK/NoContextTemplateMode006/emotyc_predictions_summary.json
+```
 
 Pour 2.2.5 :
 
