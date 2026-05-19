@@ -140,7 +140,7 @@ def main():
     # 4. Inférence
     print(f"\nInférence sur {N} phrases (batch_size={args.batch_size})…")
     probs = predict_batch(tokenizer, model, device, texts, batch_size=args.batch_size)
-    pred = (probs >= 0.06).astype(int)
+    pred = (probs >= 0.5).astype(int)
     print(f"Inférence terminée — shape: {probs.shape}")
 
     # 5. Métriques
@@ -152,7 +152,7 @@ def main():
         "source_xlsx": os.path.basename(xlsx_path),
         "n_samples": N,
         "template": f"bca_spaced_{ctx_tag}",
-        "threshold": 0.06,
+        "threshold": 0.5,
         "per_label": per_label,
         "global_metrics": global_metrics,
     }
