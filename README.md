@@ -47,6 +47,29 @@ Le mode qualifie la *relation* entre le segment textuel et l'émotion qu'il expr
 
 Une unité SitEmo ne peut recevoir qu'un seul mode.
 
+
+Les 12 catégories sont regroupées en trois types :
+
+<br>
+<p align="center">
+  <img src="illustrations/types_emotions.svg" width="700">
+</p>
+
+
+
+Les trois labels `Emo`, `Base` et `Complexe` sont déduits des autres labels. Cela s'appuie sur un cadre théorique qui distingue émotions de base et émotions complexes :
+
+
+
+Ainsi, si une instance est étiquetée `Base = 1` dans le gold, cela peut être interprété comme une disjonction entre toutes les émotions appartenant à l'ensemble des « émotions de base » (cette disjonction étant inclusive, car plusieurs émotions peuvent être activées à la fois sur une même unité textuelle). Cette logique de disjonction est la même pour `Complexe = 1` (avec l'ensemble des émotions complexes) et pour `Emo = 1` (avec tous les labels émotionnels).
+
+Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTYC avec ce cadre théorique (p. ex., il ne devrait pas prédire `Base = 1` si aucune émotion de base n'est activée, ni prédire une émotion complexe (p. ex. `Culpabilité = 1`) sans prédire `Complexe = 1`). Cette cohérence n'est pas mesurée ici, mais elle l'est [dans ce script](https://github.com/GwenTsang/EMOTYC/blob/master/scripts/emotyc_sanity_check.py).
+
+
+
+
+
+
 Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/abs/1911.03894) auquel on a ajouté une tête de classification multi-label. Cette tête de classification output une valeur binaire pour 19 labels organisés en 4 groupes sémantiques : le **Caractère Émotionnel**, les **catégories émotionelles**, les **modes d'expression** et le **type** :
 
 <br>
@@ -56,16 +79,6 @@ Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/a
 
 Formellement, la prédiction est de la forme : [ŷ₁, ..., ŷ₁₉] ∈ {0, 1}¹⁹.
 
-Les trois labels `Emo`, `Base` et `Complexe` sont déduits des autres labels. Cela s'appuie sur un cadre théorique qui distingue émotions de base et émotions complexes :
-
-<br>
-<p align="center">
-  <img src="illustrations/types_emotions.svg" width="700">
-</p>
-
-Ainsi, si une instance est étiquetée `Base = 1` dans le gold, cela peut être interprété comme une disjonction entre toutes les émotions appartenant à l'ensemble des « émotions de base » (cette disjonction étant inclusive, car plusieurs émotions peuvent être activées à la fois sur une même unité textuelle). Cette logique de disjonction est la même pour `Complexe = 1` (avec l'ensemble des émotions complexes) et pour `Emo = 1` (avec tous les labels émotionnels).
-
-Il est possible de mesurer la « cohérence » des prédictions du modèle EMOTYC avec ce cadre théorique (p. ex., il ne devrait pas prédire `Base = 1` si aucune émotion de base n'est activée, ni prédire une émotion complexe (p. ex. `Culpabilité = 1`) sans prédire `Complexe = 1`). Cette cohérence n'est pas mesurée ici, mais elle l'est [dans ce script](https://github.com/GwenTsang/EMOTYC/blob/master/scripts/emotyc_sanity_check.py).
 
 Le schéma d'annotation originel s'opère au niveau des segments textuels et est au format Glozz, voir Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
 
