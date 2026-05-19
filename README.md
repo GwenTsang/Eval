@@ -31,11 +31,10 @@ Les corpus testés sont dans le dossier `gold`, il s'agit plus précisément de 
 - [CyberAggAdo](`golds/CyberAdoAgg_gold_global_total.xlsx`)
 
 
-Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo (script d'échantillonage aléatoire : [prepare_xlsx_samples.py](prepare_xlsx_samples.py)).
+Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo. Le script d'échantillonage aléatoire utilisé est [prepare_xlsx_samples.py](prepare_xlsx_samples.py), dans lequel un `argparse` permet de choisir entre un échantillonage aléatoire ou non.
 
-
-La première est [randomSample120.xlsx](`golds/random_sample_120.xlsx`). On expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. L'échantillonage est non-contigu, ce qui signifie que les phrases ne se suivent pas. Il n'y aurait donc pas de sens à utiliser l'option `use-context`.
-Par conséquent, nous avons fait un autre script qui échantillonne des "blocs contigus" dans les XLSX. Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
+Ainsi, d'un côté, par un échantillonage non-contigu, nous avons obtenu [randomSample120.xlsx](`golds/random_sample_120.xlsx`), on expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. Dans la mesure où, dans ce XLSX, les phrases ne se suivent pas, il n'y aurait donc pas de sens à utiliser l'option `use-context`.
+C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
 
 
 
