@@ -97,22 +97,6 @@ Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquenc
 
 
 
-
-Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons procédé à un "aplatissement" pour produire des vecteurs de taille 19.
-
-Les corpus testés sont dans le dossier `gold`, il s'agit plus précisément de :
-
-- [TextToKids](golds/emotexttokids_gold_flat.xlsx) noté TTK ci-après.
-- [CyberAggAdo](golds/CyberAdoAgg_gold_global_total.xlsx)
-
-
-Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo. Le script d'échantillonage aléatoire utilisé est [prepare_xlsx_samples.py](prepare_xlsx_samples.py), dans lequel un `argparse` permet de choisir entre un échantillonage aléatoire ou non.
-
-Ainsi, d'un côté, par un échantillonage non-contigu, nous avons obtenu [randomSample120.xlsx](`golds/random_sample_120.xlsx`), on expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. Dans la mesure où, dans ce XLSX, les phrases ne se suivent pas, il n'y aurait pas de sens à utiliser l'option `use-context`.
-C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
-
-
-
 <br>
 <p align="center">
   <img src="illustrations/emotyc_output_vector.svg" width="700">
@@ -135,6 +119,15 @@ Le script [`prepare_xlsx_samples.py`](prepare_xlsx_samples.py) permet un échant
 
 
 Le dossier [`results`](results) contient l'ensemble des inférences déjà générées par les scripts d'inférence sont organisées par corpus évalué et par configuration testée.
+
+
+Ce dossier gold contient également deux autres corpus qui sont des versions échantillonnées aléatoirement de CyberAggAdo. Le script d'échantillonage aléatoire utilisé est [prepare_xlsx_samples.py](prepare_xlsx_samples.py), dans lequel un `argparse` permet de choisir entre un échantillonage aléatoire ou non.
+
+Ainsi, d'un côté, par un échantillonage non-contigu, nous avons obtenu [randomSample120.xlsx](`golds/random_sample_120.xlsx`), on expose les performances d'EMOTYC sur ce XLSX dans la section 2.2.6. Dans la mesure où, dans ce XLSX, les phrases ne se suivent pas, il n'y aurait pas de sens à utiliser l'option `use-context`.
+C'est la raison pour laquelle nous échantillonnons aussi en "blocs contigus". Cela permet d'avoir pouvoir XLSX séparés, et ainsi d'utiliser le script [`orchestrate_emotyc_folder.py`](orchestrate_emotyc_folder.py). Les résultats sur ce corpus sont exposés dans la section 2.2.5.
+
+
+
 
 ## 2. Performances du modèle EMOTYC
 
