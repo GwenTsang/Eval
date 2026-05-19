@@ -99,8 +99,9 @@ Etienne et al. (2024, p. 5) rapportent une stratégorie de fine-tuning en deux t
 
 Le modèle utilise un template **BCA** (_Before, Current, After_) :
 
+```txt
 before:{previous_sentence}current:{target_sentence}after:{next_sentence}
-
+```
 Le fine-tuning a été réalisé avec `add_special_tokens=False`. En conséquence le premier token est `_be` (premier sous-mot de `"before"`). C'est l'état caché de ce token en position 0 à la 12ᵉ couche (`h₀⁽¹²⁾`) qui est transmis à la tête de classification.
 
 
