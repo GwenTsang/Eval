@@ -56,8 +56,6 @@ Les 12 catégories émotinonnelles sont regroupées en trois types :
   <img src="illustrations/types_emotions.svg" width="700">
 </p>
 
-Le type est déductible de la catégorie émotionnelle annotée.
-
 ## Transposition au niveau phrastique : le vecteur à 19 labels
 
 
@@ -82,11 +80,20 @@ Le modèle EMOTYC est une version fine-tunée de [CamemBERT](https://arxiv.org/a
 <p align="center">
   <img src="illustrations/emotyc_output_vector.svg" width="700">
 </p>
+Les labels `Emo`, `Base` et `Complexe` sont logiquement impliqués par les autres labels. Par exemple, `Base = 1` si et seulement si au moins l'une des 6 émotions de base est à `1`.
 
-Formellement, la prédiction est de la forme : [ŷ₁, ..., ŷ₁₉] ∈ {0, 1}¹⁹.
+
+## 2. Architecture du modèle EMOTYC
+
+### 2.1 De CamemBERT-base à EMOTYC
+
+EMOTYC est une version fine-tunée de [CamemBERT-base](https://arxiv.org/abs/1911.03894) avec une tête de classification multi-label ajoutée. La sortie est un vecteur de prédictions :
+
+$$\hat{\mathbf{y}} = [\hat{y}_1, \ldots, \hat{y}_{19}] $$
+
+où chaque $\hat{y}_1$ est dans l'intervalle {0, 1}.
 
 
-Le schéma d'annotation originel s'opère au niveau des segments textuels et est au format Glozz, voir Etienne et Battistelli ([2021](https://hal.science/hal-03263194v1/document)).
 
 Nous avons suivi le schéma d'annotation au niveau des segments, puis nous avons procédé à un "aplatissement" pour produire des vecteurs de taille 19.
 
