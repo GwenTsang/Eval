@@ -53,7 +53,7 @@ def predict_batch(tokenizer, model, device, texts, batch_size=32):
         all_probs.append(probs)
     return np.vstack(all_probs)
 
-def load_gold(xlsx_path):
+def load_(xlsx_path):
     """Charge le gold. Exige TEXT + les 19 colonnes EMOTYC."""
     df = pd.read_excel(xlsx_path)
     if "TEXT" not in df.columns:
@@ -62,11 +62,9 @@ def load_gold(xlsx_path):
     if missing:
         sys.exit(f"ERREUR : colonnes EMOTYC manquantes ({len(missing)}/19) : {missing}")
 
-    # Matrice binaire (N, 19)
-    gold = np.zeros((len(df), 19), dtype=int)
-    for j, col in enumerate(ALL_LABELS):
-        gold[:, j] = (pd.to_numeric(df[col], errors="coerce").fillna(0) >= 0.5).astype(int)
-
+    # Matrice binaire (N, 19) issue du gold
+    gold = df[ALL_LABELS].astype(int).to_numpy()
+    
     return df["TEXT"].astype(str).tolist(), gold
 
 def compute_metrics(gold, pred):
