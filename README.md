@@ -6,18 +6,18 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
 
 # Table des matières
 
-- [1. Cadre théorique et schéma d'annotation utilisé](#1-cadre-théorique-et-schéma-dannotation-utilisé)
+[1. Cadre théorique et schéma d'annotation utilisé](#1-cadre-théorique-et-schéma-dannotation-utilisé)
   - [1.1 L'Unité d'annotation](#11-lunité-dannotation)
   - [1.2 Les catégories émotionnelles](#12-les-catégories-émotionnelles)
   - [1.3 Les modes d'expression](#13-les-modes-dexpression)
   - [1.4 Les trois types](#14-les-trois-types)
   - [1.5 Transposition au niveau phrastique : le vecteur à 19 labels](#15-transposition-au-niveau-phrastique-le-vecteur-à-19-labels)
-- [2. Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
+[2. Architecture du modèle EMOTYC](#2-architecture-du-modèle-emotyc)
   - [2.1 De CamemBERT-base à EMOTYC](#21-de-camembert-base-à-emotyc)
   - [2.2 Format d'entrée](#22-format-dentrée)
-- [3. Données évaluées](#3-données-évaluées)
+[3. Données évaluées](#3-données-évaluées)
   - [3.1. Echantillons](#31-echantillons)
-- [4. Performances du modèle EMOTYC](#4-performances-du-modèle-emotyc)
+[4. Performances du modèle EMOTYC](#4-performances-du-modèle-emotyc)
   - [4.1 Métriques utilisées](#41-métriques-utilisées)
   - [4.2 Répliquer les résultats officiels sur le corpus Test](#42-répliquer-les-résultats-officiels-sur-le-corpus-test)
   - [4.3 Performance sur CyberAggAdo avec les mêmes paramètres](#43-performance-sur-cyberaggado-avec-les-mêmes-paramètres)
@@ -29,11 +29,11 @@ Ce dépôt a été conçu pour évaluer les performances du modèle **[EMOTYC](h
   - [4.9 Échantillon XLSX  non contigus](#49-échantillon-aléatoire)
   - [4.10 Écarts TTK vs. CyberAggAdo — avec contexte](#410-écarts-ttk-vs-cyberaggado-avec-contexte)
   - [4.11 Écarts TTK vs. CyberAggAdo — sans contexte](#411-écarts-ttk-vs-cyberaggado-sans-contexte)
-- [5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
+[5. Remarques relatives à la configuration et aux hyperparamètres](#5-remarques-relatives-à-la-configuration-et-aux-hyperparamètres)
   - [5.1 Génération d'un rapport HTML](#51-génération-dun-rapport-html)
   - [5.2 Contiguité et non-contiguité](#52-contiguité-et-non-contiguité)
-- [6. Remarques relatives à l'optimisation des scripts d'inférence](#6-remarques-relatives-à-loptimisation-des-scripts-dinférence)
-- [7. Reproductibilité et commandes utilisées](#7-reproductibilité-et-commandes-utilisées)
+[6. Remarques relatives à l'optimisation des scripts d'inférence](#6-remarques-relatives-à-loptimisation-des-scripts-dinférence)
+[7. Reproductibilité et commandes utilisées](#7-reproductibilité-et-commandes-utilisées)
 
 # 1. Cadre théorique et schéma d'annotation utilisé
 
